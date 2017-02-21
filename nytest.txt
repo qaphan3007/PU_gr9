@@ -1,0 +1,13 @@
+cd doc/Nt/v/tdt/pu_gr9
+
+
+git add .
+
+write,quit?
+
+git commit?
+
+write,quit
+
+git push
+
