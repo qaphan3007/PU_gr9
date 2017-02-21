@@ -3,11 +3,11 @@ cd doc/Nt/v/tdt/pu_gr9
 
 git add .
 
-write,quit?
+write,quit? // for å avslutte
 
-git commit?
+git commit -m"  // trykk ESC, åsså :wq
 
-write,quit
+write,quit // for å avslutte
 
-git push
+git push // for å pushe
 
