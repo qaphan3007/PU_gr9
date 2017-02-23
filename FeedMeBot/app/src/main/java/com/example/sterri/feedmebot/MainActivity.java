@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -22,6 +23,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private EditText editTextEmail;
     private EditText editTextPassword;
     private Button buttonSignup;
+
+    private TextView textViewSignin;
     private ProgressDialog progressDialog;
 
     //defining firebaseauth object
@@ -35,9 +38,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //initializing firebase auth object
         firebaseAuth = FirebaseAuth.getInstance();
 
+        //check if the user is already logged in
+       // if(firebaseAuth.getCurrentUser() !=null){
+            //if getCurrentUser is not null -> the user is already logged in
+            //close this activity
+          //  finish();
+
+            //open profile activity
+          //  startActivity(new Intent(getApplicationContext(), HomePage.class));
+
+        //}
+
         //init views
         editTextEmail = (EditText) findViewById(R.id.editTextEmail);
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);
+        textViewSignin = (TextView) findViewById(R.id.textViewSignin);
 
         buttonSignup = (Button) findViewById(R.id.buttonSignup);
 
@@ -45,6 +60,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         //attaching listener to button
         buttonSignup.setOnClickListener(this);
+        textViewSignin.setOnClickListener(this);
 
 
     }
@@ -81,8 +97,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         //checking if success
                         if(task.isSuccessful()){
+                            finish();
                             //display some message here
-                            Toast.makeText(MainActivity.this,"Successfully registered",Toast.LENGTH_LONG).show();
+                            startActivity(new Intent(getApplicationContext(), HomePage.class));
                         }else{
                             //display some message here
                             Toast.makeText(MainActivity.this,"Registration Error",Toast.LENGTH_LONG).show();
@@ -94,8 +111,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void onClick(View view) {
-        //calling register method on click
-        registerUser();
+
+        if(view == buttonSignup){
+            //calling register method on click
+            registerUser();
+        }
+        if(view == textViewSignin){
+            //open login activity when user taps on the already registered textview
+            startActivity(new Intent(this, HomePage.class));
+        }
+
     }
 
     //  public void goToHomePage(View view) {
