@@ -14,13 +14,14 @@
         android:layout_centerVertical="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:ignore="UselessParent">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="User Registration"
+            android:text="@string/user_registration"
             android:id="@+id/textView"
             android:layout_gravity="center_horizontal"/>
 
@@ -29,7 +30,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
-            android:hint="Enter email"
+            android:hint="@string/enter_email"
             android:inputType="textEmailAddress" />
 
         <EditText
@@ -37,18 +38,25 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
-            android:hint="Enter password"
+            android:hint="@string/enter_password"
             android:inputType="textPassword" />
+
+        <Button
+            android:id="@+id/buttonLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:text="@string/login" />
 
         <Button
             android:id="@+id/buttonSignup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
-            android:text="Signup" />
+            android:text="@string/signup" />
 
         <TextView
-            android:text="Already have an account? Signin Here"
+            android:text="@string/already_have_an_account_signin_here"
             android:id="@+id/textViewSignin"
             android:textAlignment="center"
             android:layout_margin="15dp"

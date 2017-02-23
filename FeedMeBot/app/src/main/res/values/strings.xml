@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">FeedMeBot</string>
     <string name="logout">Logout</string>
+    <string name="enter_password">Enter password</string>
+    <string name="enter_email">Enter email</string>
+    <string name="login">Login</string>
+    <string name="signup">Signup</string>
+    <string name="already_have_an_account_signin_here">Already have an account? Signin Here</string>
+    <string name="user_registration">User Registration</string>
 </resources>
