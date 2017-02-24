@@ -42,7 +42,7 @@
             android:inputType="textPassword" />
 
         <Button
-            android:id="@+id/buttonLogin"
+            android:id="@+id/buttonSignIn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
@@ -56,12 +56,13 @@
             android:text="@string/signup" />
 
         <TextView
-            android:text="@string/already_have_an_account_signin_here"
+            android:text="@string/forgot_password"
             android:id="@+id/textViewSignin"
             android:textAlignment="center"
             android:layout_margin="15dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textSize="14sp" />
 
     </LinearLayout>
 

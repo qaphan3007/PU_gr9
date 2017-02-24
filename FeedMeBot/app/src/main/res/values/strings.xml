@@ -7,4 +7,6 @@
     <string name="signup">Signup</string>
     <string name="already_have_an_account_signin_here">Already have an account? Signin Here</string>
     <string name="user_registration">User Registration</string>
+    <string name="forgot_password">forgot password?</string>
+    <string name="assignment_2">Assignment 2</string>
 </resources>

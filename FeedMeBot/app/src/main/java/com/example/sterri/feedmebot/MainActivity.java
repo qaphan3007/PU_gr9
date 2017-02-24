@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,19 +17,23 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+
+    private final String TAG = "User Signing";
 
     //Creating view objects
     private EditText editTextEmail;
     private EditText editTextPassword;
     private Button buttonSignup;
 
-    private TextView textViewSignin;
+    private Button buttonSignIn;
     private ProgressDialog progressDialog;
 
-    //defining firebaseauth object
-    private FirebaseAuth firebaseAuth;
+    //defining firebaseauth object => Add auth members
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,23 +41,38 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         //initializing firebase auth object
-        firebaseAuth = FirebaseAuth.getInstance();
+        mAuth = FirebaseAuth.getInstance();
+
+        //Get a reference to the Firebase auth object
+        mAuthListener = new FirebaseAuth.AuthStateListener(){
+
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth){
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if(user != null){
+                    Log.d(TAG, "Signed in: " + user.getUid());
+                }else{
+                    Log.d(TAG, "Currently Signed Out");
+                }
+            }
+
+        };
+
 
         //check if the user is already logged in
-       // if(firebaseAuth.getCurrentUser() !=null){
+      // if(firebaseAuth.getCurrentUser() !=null){
             //if getCurrentUser is not null -> the user is already logged in
             //close this activity
-          //  finish();
+        //  finish();
 
             //open profile activity
-          //  startActivity(new Intent(getApplicationContext(), HomePage.class));
+          //startActivity(new Intent(getApplicationContext(), HomePage.class));
 
         //}
 
         //init views
         editTextEmail = (EditText) findViewById(R.id.editTextEmail);
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);
-        textViewSignin = (TextView) findViewById(R.id.textViewSignin);
+        buttonSignIn = (Button) findViewById(R.id.buttonSignIn);
 
         buttonSignup = (Button) findViewById(R.id.buttonSignup);
 
@@ -60,12 +80,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         //attaching listener to button
         buttonSignup.setOnClickListener(this);
-        textViewSignin.setOnClickListener(this);
+        buttonSignIn.setOnClickListener(this);
 
 
     }
 
 
+    private void signInUserIn(){
+        String email = editTextEmail.getText().toString();
+        String password = editTextPassword.getText().toString();
+
+        //Sign the user in with email and password credentials
+        mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                
+                if (task.isSuccessful()){
+                    Toast.makeText(MainActivity.this, "user was logged in", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(MainActivity.this, "Failed to log in", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
 
     private void registerUser(){
 
@@ -91,7 +129,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         progressDialog.show();
 
         //creating a new user
-        firebaseAuth.createUserWithEmailAndPassword(email, password)
+        mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -116,8 +154,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             //calling register method on click
             registerUser();
         }
-        if(view == textViewSignin){
+        if(view == buttonSignIn){
             //open login activity when user taps on the already registered textview
+            signInUserIn();
             startActivity(new Intent(this, HomePage.class));
         }
 
@@ -129,4 +168,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     //}
 
 
+    //make sure the listener is active
+    public void onStart(){
+        super.onStart();
+        mAuth.addAuthStateListener(mAuthListener );
+    }
+
+    public void onStop(){
+        super.onStop();
+        if(mAuthListener != null){
+            mAuth.removeAuthStateListener(mAuthListener);
+        }
+    }
 }
