@@ -12,6 +12,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class HomePage extends AppCompatActivity implements View.OnClickListener {
 
     //firebase auth object
+    //Test github
     private FirebaseAuth firebaseAuth;
     //create button View
     private Button buttonLogout;
