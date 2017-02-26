@@ -54,7 +54,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
         //if logout is pressed
         if(view == buttonLogout){
             //logging out the user
-            firebaseAuth.signOut();
+           // firebaseAuth.signOut();
             //closing activity
             finish();
             //starting login activity

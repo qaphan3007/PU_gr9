@@ -117,8 +117,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Toast.makeText(this,"Please enter email",Toast.LENGTH_LONG).show();
             return;
         }
+
+        if(!email.contains("@")){
+            Toast.makeText(this,"Invalid Email",Toast.LENGTH_LONG).show();
+            return;
+        }
+
         if(TextUtils.isEmpty(password)){
             Toast.makeText(this,"Please enter password",Toast.LENGTH_LONG).show();
+            return;
+
+        }
+        if(password.length() < 10) {
+            Toast.makeText(this, "Password must at least contain 10 characters", Toast.LENGTH_LONG).show();
             return;
         }
 
@@ -150,16 +161,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void onClick(View view) {
 
-        if(view == buttonSignup){
+
+        if (view == buttonSignup) {
             //calling register method on click
             registerUser();
         }
-        if(view == buttonSignIn){
+        if (view == buttonSignIn) {
+            int qp = 0;
             //open login activity when user taps on the already registered textview
             signInUserIn();
-            startActivity(new Intent(this, HomePage.class));
-        }
+            while (qp == 0) {
+                startActivity(new Intent(this, HomePage.class));
+                qp = 1;
 
+            }
+
+        }
     }
 
     //  public void goToHomePage(View view) {
