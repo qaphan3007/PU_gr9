@@ -86,24 +86,39 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
-    private void signInUserIn(){
+    private void signInUserIn() {
         String email = editTextEmail.getText().toString();
         String password = editTextPassword.getText().toString();
 
-        //Sign the user in with email and password credentials
-        mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-            
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                
-                if (task.isSuccessful()){
-                    Toast.makeText(MainActivity.this, "user was logged in", Toast.LENGTH_SHORT).show();
-                }else{
-                    Toast.makeText(MainActivity.this, "Failed to log in", Toast.LENGTH_SHORT).show();
+        if (TextUtils.isEmpty(email)) {
+            Toast.makeText(this, "Please enter email", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        if (TextUtils.isEmpty(password)) {
+            Toast.makeText(this, "Please enter email", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+            //Sign the user in with email and password credentials
+            mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+
+                    if (task.isSuccessful()) {
+                        Toast.makeText(MainActivity.this, "user was logged in", Toast.LENGTH_SHORT).show();
+                        finish();
+                        //display some message here
+                        startActivity(new Intent(getApplicationContext(), HomePage.class));
+                    } else {
+                        Toast.makeText(MainActivity.this, "Failed to log in", Toast.LENGTH_SHORT).show();
+                    }
                 }
-            }
-        });
-    }
+            });
+        }
+
+
 
     private void registerUser(){
 
@@ -167,17 +182,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             registerUser();
         }
         if (view == buttonSignIn) {
-            int qp = 0;
+
             //open login activity when user taps on the already registered textview
+
             signInUserIn();
-            while (qp == 0) {
-                startActivity(new Intent(this, HomePage.class));
-                qp = 1;
+
+
+
 
             }
 
         }
-    }
+
 
     //  public void goToHomePage(View view) {
     //Intent intent = new Intent(this, HomePage.class);
