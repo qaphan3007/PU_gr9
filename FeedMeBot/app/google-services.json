@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "394638545399",
+    "firebase_url": "https://feedmebot-f600a.firebaseio.com",
+    "project_id": "feedmebot-f600a",
+    "storage_bucket": "feedmebot-f600a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:394638545399:android:6653eee1e3d07dcf",
+        "android_client_info": {
+          "package_name": "com.example.sterri.feedmebot"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "394638545399-btp0ga0eb8qkfp8841cja82rdub53nus.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.sterri.feedmebot",
+            "certificate_hash": "036a26288f908d49604a8ffe2fa8b014cf9c3375"
+          }
+        },
+        {
+          "client_id": "394638545399-c88k8ppl6cebbr7htjcc9c43mgt98um0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBnVkokT76llXwqWLnzgMRXuBjKt0YB1GI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "394638545399-c88k8ppl6cebbr7htjcc9c43mgt98um0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
