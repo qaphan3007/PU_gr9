@@ -17,6 +17,10 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
 
 public class LogIn extends AppCompatActivity implements View.OnClickListener {
 
@@ -33,7 +37,8 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener {
     //defining firebaseauth object => Add auth members
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
-
+    private FirebaseUser currentUser;
+    private DatabaseReference mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -157,6 +162,20 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener {
                 if(task.isSuccessful()){
                     finish();
                     //display success message here
+
+
+
+                    // Make a new user entry in the database
+                    HashMap<String,String> userEntry = new HashMap<String,String>();
+                    userEntry.put("email",editTextEmail.getText().toString().trim());
+                    // Hvis dette er register/login page for teachers, make a private type variable
+                    // in the beginning of this file, then set according type after each button.
+                    // Add userEntry.put("type", type);
+                    mDatabase = FirebaseDatabase.getInstance().getReference();
+                    mDatabase.child("UserInfo").push().setValue(userEntry);  // Create a random key & push the name,email under it
+
+
+
                     startActivity(new Intent(getApplicationContext(), HomePage.class));  // Move to HomePage
                 }else{
                     //display error message here
