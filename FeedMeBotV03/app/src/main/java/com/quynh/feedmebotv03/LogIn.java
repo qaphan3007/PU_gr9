@@ -168,4 +168,17 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener {
 
     }
 
+
+    //make sure the listener is active
+    public void onStart(){
+        super.onStart();
+        mAuth.addAuthStateListener(mAuthListener );
+    }
+
+    public void onStop(){
+        super.onStop();
+        if(mAuthListener != null){
+            mAuth.removeAuthStateListener(mAuthListener);
+        }
+    }
 }
