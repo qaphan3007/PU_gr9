@@ -22,6 +22,8 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
 
+// LogIn is the class that will run when app is run. It logs the student in (or registers).
+
 public class LogIn extends AppCompatActivity implements View.OnClickListener {
 
     private final String TAG = "User Signing";
@@ -71,8 +73,13 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener {
         //attaching listener to button
         buttonSignup.setOnClickListener(this);
         buttonSignIn.setOnClickListener(this);
-        buttonProf.setOnClickListener(this);
-
+        buttonProf.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Intent profLog = new Intent(getApplicationContext(), ProfLogIn.class);
+                startActivity(profLog);  // Move view to ProfLogIn
+            }
+        });
     }
 
 
@@ -193,12 +200,17 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener {
             mAuth.removeAuthStateListener(mAuthListener);
         }
     }
-
+/*
     public void profJump (View view) {
         // Problem! Hopper ikke til profLogIn klassen?!
-        Intent intent = new Intent(getApplicationContext(), ProfLogIn.class);
-        startActivity(intent);
-    }
+         buttonProf.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                System.out.println("Changed to prof view!");
+                startActivity(new Intent(getApplicationContext(), ProfLogIn.class));  // Move view to ProfLogIn
+            }
+         });
+    }*/
 }
 
 

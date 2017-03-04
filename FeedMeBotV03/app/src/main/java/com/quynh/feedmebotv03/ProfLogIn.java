@@ -22,6 +22,9 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
 
+// This class is a copy of the Login.java class. It does everything the exact same way,
+// except now it handles the professors' login.
+
 public class ProfLogIn extends AppCompatActivity implements View.OnClickListener {
 
     private final String TAG = "User Signing";
@@ -44,7 +47,7 @@ public class ProfLogIn extends AppCompatActivity implements View.OnClickListener
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.prof_login);
+        setContentView(R.layout.activity_prof_log_in);
         user_class = new User();
 
         mAuth = FirebaseAuth.getInstance();         //initializing firebase auth object
@@ -67,14 +70,19 @@ public class ProfLogIn extends AppCompatActivity implements View.OnClickListener
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);
         buttonSignIn = (Button) findViewById(R.id.buttonSignIn);
         buttonSignup = (Button) findViewById(R.id.buttonSignup);
-        buttonStud = (Button) findViewById(R.id.buttonProf);
+        buttonStud = (Button) findViewById(R.id.buttonStud);
         progressDialog = new ProgressDialog(this);
 
         //attaching listener to button
         buttonSignup.setOnClickListener(this);
         buttonSignIn.setOnClickListener(this);
-        buttonStud.setOnClickListener(this);
-
+        buttonStud.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Intent login = new Intent(getApplicationContext(), LogIn.class);
+                startActivity(login);  // Move view to Student's LogIn view
+            }
+        });
     }
 
 
