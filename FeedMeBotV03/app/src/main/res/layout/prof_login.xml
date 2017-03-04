@@ -67,13 +67,12 @@
     </LinearLayout>
 
     <Button
-        android:text="Professor?"
+        android:text="Student?"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/buttonProf"
+        android:id="@+id/buttonStud"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:onClick="profJump"/>
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

@@ -2,9 +2,9 @@ package com.quynh.feedmebotv03;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -22,7 +22,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
 
-public class LogIn extends AppCompatActivity implements View.OnClickListener {
+public class ProfLogIn extends AppCompatActivity implements View.OnClickListener {
 
     private final String TAG = "User Signing";
 
@@ -31,19 +31,21 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener {
     private EditText editTextPassword;
     private Button buttonSignup;
     private Button buttonSignIn;
-    private Button buttonProf;
+    private Button buttonStud;
     private ProgressDialog progressDialog;
 
     // Defining firebaseauth object => Add auth members
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private FirebaseUser currentUser;
+    private User user_class;
     private DatabaseReference mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_log_in);
+        setContentView(R.layout.prof_login);
+        user_class = new User();
 
         mAuth = FirebaseAuth.getInstance();         //initializing firebase auth object
 
@@ -65,13 +67,13 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener {
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);
         buttonSignIn = (Button) findViewById(R.id.buttonSignIn);
         buttonSignup = (Button) findViewById(R.id.buttonSignup);
-        buttonProf = (Button) findViewById(R.id.buttonProf);
+        buttonStud = (Button) findViewById(R.id.buttonProf);
         progressDialog = new ProgressDialog(this);
 
         //attaching listener to button
         buttonSignup.setOnClickListener(this);
         buttonSignIn.setOnClickListener(this);
-        buttonProf.setOnClickListener(this);
+        buttonStud.setOnClickListener(this);
 
     }
 
@@ -110,12 +112,12 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener {
             public void onComplete(@NonNull Task<AuthResult> task) {
 
                 if (task.isSuccessful()) {
-                    Toast.makeText(LogIn.this, "user was logged in", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ProfLogIn.this, "user was logged in", Toast.LENGTH_SHORT).show();
                     finish();
                     //display some message here
                     startActivity(new Intent(getApplicationContext(), HomePage.class));  // Move view to HomePage
                 } else {
-                    Toast.makeText(LogIn.this, "Failed to log in", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ProfLogIn.this, "Failed to log in", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -165,14 +167,16 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener {
                     // Make a new user entry in the database
                     HashMap<String,String> userEntry = new HashMap<String,String>();
                     userEntry.put("email",email);
-                    userEntry.put("type","student");
+                    userEntry.put("type","teacher");
                     mDatabase = FirebaseDatabase.getInstance().getReference();
                     mDatabase.child("UserInfo").push().setValue(userEntry);  // Create a random key & push the name,email under it
+
+                    user_class.setEmail(email);
 
                     startActivity(new Intent(getApplicationContext(), HomePage.class));  // Move to HomePage
                 }else{
                     //display error message here
-                    Toast.makeText(LogIn.this,"Registration Error",Toast.LENGTH_LONG).show();
+                    Toast.makeText(ProfLogIn.this,"Registration Error",Toast.LENGTH_LONG).show();
                 }
                 progressDialog.dismiss();
             }
@@ -194,11 +198,4 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
-    public void profJump (View view) {
-        // Problem! Hopper ikke til profLogIn klassen?!
-        Intent intent = new Intent(getApplicationContext(), ProfLogIn.class);
-        startActivity(intent);
-    }
 }
-
-
