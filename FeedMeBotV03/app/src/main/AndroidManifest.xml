@@ -22,6 +22,8 @@
         <activity android:name=".SecondQuestion" />
         <activity android:name=".ThirdQuestion"/>
         <activity android:name=".ProfLogIn" />
+        <activity android:name=".ViewUserInfo" />
+        <activity android:name=".EditProfile" />
 
     </application>
 

@@ -17,12 +17,15 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 
-// LogIn is the class that will run when app is run. It logs the student in (or registers).
+// This is the class that will run when "app" is run. It logs the STUDENT in (or registers).
 
 public class LogIn extends AppCompatActivity implements View.OnClickListener {
 
@@ -41,6 +44,7 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener {
     private FirebaseAuth.AuthStateListener mAuthListener;
     private FirebaseUser currentUser;
     private DatabaseReference mDatabase;
+    private String userID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,19 +53,6 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener {
 
         mAuth = FirebaseAuth.getInstance();         //initializing firebase auth object
 
-        //Get a reference to the Firebase auth object
-        mAuthListener = new FirebaseAuth.AuthStateListener() {
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-                if (user != null) {
-                    Log.d(TAG, "Signed in: " + user.getUid());
-                } else {
-                    Log.d(TAG, "Currently Signed Out");
-                }
-            }
-        };
-
-
         // Initialize views
         editTextEmail = (EditText) findViewById(R.id.editTextEmail);
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);
@@ -69,6 +60,38 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener {
         buttonSignup = (Button) findViewById(R.id.buttonSignup);
         buttonProf = (Button) findViewById(R.id.buttonProf);
         progressDialog = new ProgressDialog(this);
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        FirebaseUser user = mAuth.getCurrentUser();
+        userID = user.getUid();
+
+        //Get a reference to the Firebase auth object
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user != null) {
+                    Log.d(TAG, "Signed in: " + user.getUid());
+                    toastMessage("Successfully signed in with: "+ user.getEmail());
+                    userID = user.getUid();
+
+                } else {
+                    Log.d(TAG, "Currently Signed Out");
+                    toastMessage("Successfully signed out.");
+                }
+            }
+        };
+
+        mDatabase.child("UserInfo").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // When there is change to the database, log it. (save it)
+                Log.d("Adding Value", "onDataChange: Added info to database: \n" +
+                dataSnapshot.getValue());   // Value of this is going to be the key
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.d("Adding Value","Failed to add value.", databaseError.toException());
+            }
+        });
 
         //attaching listener to button
         buttonSignup.setOnClickListener(this);
@@ -80,6 +103,21 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener {
                 startActivity(profLog);  // Move view to ProfLogIn
             }
         });
+
+    }
+
+
+    //make sure the listener is active
+    public void onStart(){
+        super.onStart();
+        mAuth.addAuthStateListener(mAuthListener );
+    }
+
+    public void onStop(){
+        super.onStop();
+        if(mAuthListener != null){
+            mAuth.removeAuthStateListener(mAuthListener);
+        }
     }
 
 
@@ -120,7 +158,7 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener {
                     Toast.makeText(LogIn.this, "user was logged in", Toast.LENGTH_SHORT).show();
                     finish();
                     //display some message here
-                    startActivity(new Intent(getApplicationContext(), HomePage.class));  // Move view to HomePage
+                    startActivity(new Intent(getApplicationContext(), ViewUserInfo.class));  // Move view to HomePage
                 } else {
                     Toast.makeText(LogIn.this, "Failed to log in", Toast.LENGTH_SHORT).show();
                 }
@@ -167,18 +205,17 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener {
                 //checking if success
                 if(task.isSuccessful()){
                     finish();
-                    //display success message here
 
                     // Make a new user entry in the database
                     HashMap<String,String> userEntry = new HashMap<String,String>();
                     userEntry.put("email",email);
                     userEntry.put("type","student");
-                    mDatabase = FirebaseDatabase.getInstance().getReference();
-                    mDatabase.child("UserInfo").push().setValue(userEntry);  // Create a random key & push the name,email under it
+                    mDatabase.child("UserInfo").child(userID).setValue(userEntry);  // Create a random key & push the name,email under it
+                    System.out.println("This is the userID" + userID);
 
-                    startActivity(new Intent(getApplicationContext(), HomePage.class));  // Move to HomePage
+                    startActivity(new Intent(getApplicationContext(), ViewUserInfo.class));  // Move to HomePage
                 }else{
-                    //display error message here
+                    // Display the error message
                     Toast.makeText(LogIn.this,"Registration Error",Toast.LENGTH_LONG).show();
                 }
                 progressDialog.dismiss();
@@ -188,29 +225,10 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener {
     }
 
 
-    //make sure the listener is active
-    public void onStart(){
-        super.onStart();
-        mAuth.addAuthStateListener(mAuthListener );
+    private void toastMessage(String message){
+        Toast.makeText(this,message,Toast.LENGTH_LONG).show();
     }
 
-    public void onStop(){
-        super.onStop();
-        if(mAuthListener != null){
-            mAuth.removeAuthStateListener(mAuthListener);
-        }
-    }
-/*
-    public void profJump (View view) {
-        // Problem! Hopper ikke til profLogIn klassen?!
-         buttonProf.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                System.out.println("Changed to prof view!");
-                startActivity(new Intent(getApplicationContext(), ProfLogIn.class));  // Move view to ProfLogIn
-            }
-         });
-    }*/
 }
 
 
