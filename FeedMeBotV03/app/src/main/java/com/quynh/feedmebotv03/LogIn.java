@@ -211,7 +211,6 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener {
                     userEntry.put("email",email);
                     userEntry.put("type","student");
                     mDatabase.child("UserInfo").child(userID).setValue(userEntry);  // Create a random key & push the name,email under it
-                    System.out.println("This is the userID" + userID);
 
                     startActivity(new Intent(getApplicationContext(), ViewUserInfo.class));  // Move to HomePage
                 }else{

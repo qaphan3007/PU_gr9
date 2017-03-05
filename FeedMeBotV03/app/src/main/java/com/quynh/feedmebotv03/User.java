@@ -1,7 +1,10 @@
 package com.quynh.feedmebotv03;
 
-
 import java.util.ArrayList;
+
+/**
+ * Created by qaphan3007 on 05.03.2017.
+ */
 
 public class User {
 
