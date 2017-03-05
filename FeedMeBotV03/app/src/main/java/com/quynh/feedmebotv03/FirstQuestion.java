@@ -10,6 +10,7 @@ import android.widget.TextView;
 public class FirstQuestion extends AppCompatActivity {
     TextView textView;
     SeekBar seekBar;
+    Assignment assignment; // create an assignment object
 
 
 
@@ -24,8 +25,10 @@ public class FirstQuestion extends AppCompatActivity {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 if (progress == 0) {
                     textView.setText("Jeg kokte øvingen......");
+                    assignment.setAssignmentHours(0);// sets the amount of time used in assignment object to 0
                 } else {
                     textView.setText(progress + " timer");
+                    assignment.setAssignmentHours(progress); // sets the amount of time used in assignment object
                 }
             }
             @Override
