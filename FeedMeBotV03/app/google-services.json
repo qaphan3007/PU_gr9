@@ -8,64 +8,20 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:394638545399:android:6653eee1e3d07dcf",
-        "android_client_info": {
-          "package_name": "com.example.sterri.feedmebot"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "394638545399-668vpgieh19onmp19chij5qbkchs60a5.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.sterri.feedmebot",
-            "certificate_hash": "c13e1b92bd7a5fbe1f8e21df1354843ee86ff7ca"
-          }
-        },
-        {
-          "client_id": "394638545399-btp0ga0eb8qkfp8841cja82rdub53nus.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.sterri.feedmebot",
-            "certificate_hash": "036a26288f908d49604a8ffe2fa8b014cf9c3375"
-          }
-        },
-        {
-          "client_id": "394638545399-c88k8ppl6cebbr7htjcc9c43mgt98um0.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyBnVkokT76llXwqWLnzgMRXuBjKt0YB1GI"
-        }
-      ],
-      "services": {
-        "analytics_service": {
-          "status": 1
-        },
-        "appinvite_service": {
-          "status": 2,
-          "other_platform_oauth_client": [
-            {
-              "client_id": "394638545399-c88k8ppl6cebbr7htjcc9c43mgt98um0.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        },
-        "ads_service": {
-          "status": 2
-        }
-      }
-    },
-    {
-      "client_info": {
         "mobilesdk_app_id": "1:394638545399:android:aeba28feca1fad33",
         "android_client_info": {
           "package_name": "com.quynh.feedmebotv03"
         }
       },
       "oauth_client": [
+        {
+          "client_id": "394638545399-9fgk8cjtg4qeajeafquujgnh6flltopo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.quynh.feedmebotv03",
+            "certificate_hash": "c13e1b92bd7a5fbe1f8e21df1354843ee86ff7ca"
+          }
+        },
         {
           "client_id": "394638545399-uk3chq0j9qt0jgualh6o7vvpaejr6uc3.apps.googleusercontent.com",
           "client_type": 1,

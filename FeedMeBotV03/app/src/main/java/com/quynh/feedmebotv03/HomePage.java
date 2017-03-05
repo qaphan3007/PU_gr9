@@ -14,7 +14,6 @@ public class HomePage extends AppCompatActivity {
         setContentView(R.layout.activity_homepage);
     }
     public void goToSubject(View view) {
-
         Intent intent = new Intent(this, JavaOverhead.class);
         startActivity(intent);
     }

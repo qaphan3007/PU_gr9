@@ -21,6 +21,8 @@
         <activity android:name=".FirstQuestion" />
         <activity android:name=".SecondQuestion" />
         <activity android:name=".ThirdQuestion"/>
+        <activity android:name=".ProfLogIn" />
+
     </application>
 
 </manifest>

@@ -12,6 +12,7 @@ import org.w3c.dom.Text;
 public class SecondQuestion extends AppCompatActivity {
     TextView textView;
     SeekBar seekBar;
+    Assignment assignment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
