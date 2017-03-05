@@ -21,6 +21,14 @@
         <activity android:name=".JavaOversikt" />
         <activity android:name=".JavaAssignment1" />
         <activity android:name=".JavaAssignment12" />
+        <activity android:name=".HomePageProfessor" />
+        <activity android:name=".PUserProfile" />
+        <activity android:name=".PCourses" />
+        <activity
+            android:name=".PFeedBacks"
+            android:label="@string/title_activity_pfeed_backs"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".PStatistics"></activity>
     </application>
 
 </manifest>

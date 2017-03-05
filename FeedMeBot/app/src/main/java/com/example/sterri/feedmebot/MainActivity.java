@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private EditText editTextEmail;
     private EditText editTextPassword;
     private Button buttonSignup;
+    private Button buttonProffessor;
 
     private Button buttonSignIn;
     private ProgressDialog progressDialog;
@@ -75,12 +76,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         buttonSignIn = (Button) findViewById(R.id.buttonSignIn);
 
         buttonSignup = (Button) findViewById(R.id.buttonSignup);
+        buttonProffessor = (Button) findViewById(R.id.buttonProf);
 
         progressDialog = new ProgressDialog(this);
 
         //attaching listener to button
         buttonSignup.setOnClickListener(this);
         buttonSignIn.setOnClickListener(this);
+        buttonProffessor.setOnClickListener(this);
 
 
     }
@@ -118,7 +121,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             });
         }
 
+    private void ButtonProfessor(){
+        progressDialog.setMessage("Sign in as professor");
+        progressDialog.show();
 
+        startActivity(new Intent(getApplicationContext(), HomePageProfessor.class));
+
+    }
 
     private void registerUser(){
 
@@ -186,6 +195,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             //open login activity when user taps on the already registered textview
 
             signInUserIn();
+        }
+        if (view == buttonProffessor) {
+            ButtonProfessor();
 
 
 
