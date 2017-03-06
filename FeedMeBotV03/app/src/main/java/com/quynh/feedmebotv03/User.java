@@ -6,6 +6,8 @@ import java.util.ArrayList;
  * Created by qaphan3007 on 05.03.2017.
  */
 
+// This is the User class that will store all info about the current user from the database.
+
 public class User {
 
     private String email, type;

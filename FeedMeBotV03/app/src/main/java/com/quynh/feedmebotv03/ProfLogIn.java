@@ -34,7 +34,7 @@ import java.util.HashMap;
 
 public class ProfLogIn extends AppCompatActivity implements View.OnClickListener {
 
-    private final String TAG = "User Signing";
+    private final String TAG = "Professor Signing In";
 
     // Creating view objects
     private EditText editTextEmail;
@@ -54,7 +54,7 @@ public class ProfLogIn extends AppCompatActivity implements View.OnClickListener
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_log_in);
+        setContentView(R.layout.activity_prof_log_in);
 
         mAuth = FirebaseAuth.getInstance();         //initializing firebase auth object
 
@@ -138,94 +138,88 @@ public class ProfLogIn extends AppCompatActivity implements View.OnClickListener
         }
     }
 
+    private boolean checkValidInputField(String email, String password){
+        //Check for valid email and password
+        if(TextUtils.isEmpty(email)){
+            toastMessage("Email field must not be empty.");
+            return false;
+        }
+        else if(!email.contains("@")){
+            toastMessage("Invalid email. (missing a @)");
+            return false;
+        }
+        else if(TextUtils.isEmpty(password)){
+            toastMessage("Password field must not be empty!");
+            return false;
+
+        }
+        else if(password.length() < 10) {
+            toastMessage("Password must at least contain 10 characters.");
+            return false;
+        }
+        else {return true;}
+    }
+
 
     private void signInUserIn() {
         String email = editTextEmail.getText().toString();
         String password = editTextPassword.getText().toString();
 
-        if (TextUtils.isEmpty(email)) {
-            toastMessage("Please enter email.");
-            return;
-        }
+        if (checkValidInputField(email,password)) {
+            //Sign the user in with email and password credentials
+            mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
 
-        if (TextUtils.isEmpty(password)) {
-            toastMessage("Please enter the password!");
-            return;
-        }
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
 
-        //Sign the user in with email and password credentials
-        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-
-                if (task.isSuccessful()) {
-                    toastMessage("User was logged in.");
-                    finish();
-                    //display some message here
-                    startActivity(new Intent(getApplicationContext(), ViewUserInfo.class));  // Move view to HomePage
-                } else {
-                    toastMessage("Failed to log in.");
+                    if (task.isSuccessful()) {
+                        toastMessage("User was logged in.");
+                        finish();
+                        //display some message here
+                        startActivity(new Intent(getApplicationContext(), ViewUserInfo.class));  // Move view to Profile
+                    } else {
+                        toastMessage("Failed to log in.");
+                    }
                 }
-            }
-        });
+            });
+        }
     }
 
 
     private void registerUser(){
-        //get email and password from edittexts
+        //get email and password from the input field
         final String email = editTextEmail.getText().toString().trim();
         String password  = editTextPassword.getText().toString().trim();
 
-        //checking if email and passwords are empty
-        if(TextUtils.isEmpty(email)){
-            toastMessage("Password must at least contain 10 characters.");
-            return;
-        }
+        if (checkValidInputField(email,password)) {
 
-        if(!email.contains("@")){
-            toastMessage("Invalid email. (missing a @)");
-            return;
-        }
+            // If the email and password are valid, display a progess log
+            progressDialog.setMessage("Registering Please Wait...");
+            progressDialog.show();
 
-        if(TextUtils.isEmpty(password)){
-            toastMessage("Password field must not be empty!");
-            return;
+            //creating a new user
+            mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    //checking if success
+                    if (task.isSuccessful()) {
+                        finish();
 
-        }
-        if(password.length() < 10) {
-            toastMessage("Password must at least contain 10 characters.");
-            return;
-        }
+                        // Make a new user entry in the database
+                        HashMap<String, String> userEntry = new HashMap<String, String>();
+                        userEntry.put("email", email);
+                        userEntry.put("type", "teacher");
+                        mDatabase.child("UserInfo").child(userID).setValue(userEntry);  // Create key=userID & push the name,email under it
 
-        // Ff the email and password are not empty
-        // display a progress dialog
-        progressDialog.setMessage("Registering Please Wait...");
-        progressDialog.show();
-
-        //creating a new user
-        mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                //checking if success
-                if(task.isSuccessful()){
-                    finish();
-
-                    // Make a new user entry in the database
-                    HashMap<String,String> userEntry = new HashMap<String,String>();
-                    userEntry.put("email",email);
-                    userEntry.put("type","teacher");
-                    mDatabase.child("UserInfo").child(userID).setValue(userEntry);  // Create a random key & push the name,email under it
-
-                    startActivity(new Intent(getApplicationContext(), ViewUserInfo.class));  // Move to HomePage
-                }else{
-                    // Display the error message
-                    toastMessage("Registration error.");
+                        startActivity(new Intent(getApplicationContext(), ViewUserInfo.class));  // Move to Profile View
+                    } else {
+                        // Display the error message
+                        toastMessage("Registration error.");
+                    }
+                    progressDialog.dismiss();
                 }
-                progressDialog.dismiss();
-            }
-        });
-
+            });
+        }
     }
 
 

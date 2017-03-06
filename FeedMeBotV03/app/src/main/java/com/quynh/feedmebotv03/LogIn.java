@@ -29,7 +29,7 @@ import java.util.HashMap;
 
 public class LogIn extends AppCompatActivity implements View.OnClickListener {
 
-    private final String TAG = "User Signing";
+    private final String TAG = "Student Signing In";
 
     // Creating view objects
     private EditText editTextEmail;
@@ -60,7 +60,8 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener {
         buttonSignup = (Button) findViewById(R.id.buttonSignup);
         buttonProf = (Button) findViewById(R.id.buttonProf);
         progressDialog = new ProgressDialog(this);
-        mDatabase = FirebaseDatabase.getInstance().getReference();
+
+        mDatabase = FirebaseDatabase.getInstance().getReference();   // Ref to Database
         FirebaseUser user = mAuth.getCurrentUser();
         userID = user.getUid();
 
@@ -193,7 +194,7 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener {
             return;
         }
 
-        // Ff the email and password are not empty
+        // If the email and password are not empty
         // display a progress dialog
         progressDialog.setMessage("Registering Please Wait...");
         progressDialog.show();
@@ -208,13 +209,13 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener {
 
                     // Make a new user entry in the database
                     HashMap<String,String> userEntry = new HashMap<String,String>();
-                    userEntry.put("email",email);
+                    userEntry.put("email",email);   // userEntry = { email = email, type=student}
                     userEntry.put("type","student");
-                    mDatabase.child("UserInfo").child(userID).setValue(userEntry);  // Create a random key & push the name,email under it
+                    mDatabase.child("UserInfo").child(userID).setValue(userEntry);  // Create key=userID & push the name,email under it
 
-                    startActivity(new Intent(getApplicationContext(), ViewUserInfo.class));  // Move to HomePage
+                    startActivity(new Intent(getApplicationContext(), ViewUserInfo.class));  // Move to View User Profile
                 }else{
-                    // Display the error message
+                    // Display tddddhe error message
                     Toast.makeText(LogIn.this,"Registration Error",Toast.LENGTH_LONG).show();
                 }
                 progressDialog.dismiss();
