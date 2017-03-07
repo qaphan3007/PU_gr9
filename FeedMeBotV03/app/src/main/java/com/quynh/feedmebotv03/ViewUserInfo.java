@@ -120,14 +120,20 @@ public class ViewUserInfo extends AppCompatActivity {
                 User uInfo = new User();
                 uInfo.setEmail((String) info.get("email"));
                 uInfo.setType((String) info.get("type"));
+                uInfo.setName((String) info.get("name"));
+                uInfo.setPhone((String) info.get("phone"));
+                uInfo.setDate((String) info.get("birthday"));
 
                 // Display the user info
                 Log.d(TAG, "userInfo: email: " + uInfo.getEmail());
                 Log.d(TAG, "userInfo: type: " + uInfo.getType());
 
                 ArrayList<String> array = new ArrayList<String>();
-                array.add(uInfo.getEmail());
-                array.add(uInfo.getType());
+                array.add("Email:     " + uInfo.getEmail());
+                array.add("Type:      " + uInfo.getType());
+                array.add("Name:      " + uInfo.getName());
+                array.add("Phone:     " + uInfo.getPhone());
+                array.add("Birthday:  " + uInfo.getDate());
 
                 ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, array);
                 mListView.setAdapter(adapter);
