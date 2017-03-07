@@ -69,12 +69,10 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
                     Log.d(TAG, "Signed in: " + user.getUid());
-                    toastMessage("Successfully signed in with: "+ user.getEmail());
                     userID = user.getUid();
 
                 } else {
                     Log.d(TAG, "Currently Signed Out");
-                    toastMessage("Successfully signed out.");
                 }
             }
         };
@@ -158,7 +156,7 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
-                        toastMessage("User is logged in.");
+                        toastMessage("User is signed in.");
                         finish();
                         startActivity(new Intent(getApplicationContext(), ViewUserInfo.class));  // Move view to Profile
                     } else {

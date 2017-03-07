@@ -36,7 +36,7 @@ public class ViewUserInfo extends AppCompatActivity {
     private FirebaseDatabase mFirebaseDatabase;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
-    private DatabaseReference myRef;
+    private DatabaseReference mUserInfoRef;
 
     private String userID;
     private ListView mListView;
@@ -53,36 +53,10 @@ public class ViewUserInfo extends AppCompatActivity {
         mListView = (ListView) findViewById(R.id.listview);
         mAuth = FirebaseAuth.getInstance();
         mFirebaseDatabase = FirebaseDatabase.getInstance();
-        myRef = mFirebaseDatabase.getReference().child("UserInfo");
+        mUserInfoRef = mFirebaseDatabase.getReference().child("UserInfo");
         FirebaseUser user = mAuth.getCurrentUser();
         userID = user.getUid();
 
-        mAuthListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-                if (user != null) {
-                    Log.d(TAG, "Signed in: " + user.getUid());
-                } else {
-                    Log.d(TAG, "Currently Signed Out");
-                }
-            }
-        };
-
-        // Every time there is a change to the database at myRef, this is updated
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // This method is called everytime there is a change to data
-                // at this location.
-                showData(dataSnapshot);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
 
         // Jump to Edit Profile page
         editProfile = (Button) findViewById(R.id.edit_profile);
@@ -94,6 +68,7 @@ public class ViewUserInfo extends AppCompatActivity {
             }
         });
 
+        // Logs user out and jump back to the login page
         logOut = (Button) findViewById(R.id.log_out);
         logOut.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -104,9 +79,24 @@ public class ViewUserInfo extends AppCompatActivity {
             }
         });
 
+        // Every time there is a change to the database at mUserInfoRef, this is updated
+        mUserInfoRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called everytime there is a change to data
+                // at this location.
+                showData(dataSnapshot);
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {     // Required method
 
+            }
+        });
     }
 
+
+    // showData is the method that is called when there is a change to the database.
+    // In this case, every time there is a new user
     private void showData(DataSnapshot dataSnapshot) {
         // userMap is a map that has the values: userID = HashMap of userInfo
         // (Example: MuwwNKM8COeZkaok8YPvtRdiSUi1 = {email=test123@gmail.com})
@@ -117,39 +107,27 @@ public class ViewUserInfo extends AppCompatActivity {
                 Object userinfo = userMap.get(userID);     // This is the map under the child with key = userID
                 HashMap<String,Object> info = (HashMap<String,Object>) userinfo;  // Cast Object to HashMap
 
+                // Add the needed items into a User object
                 User uInfo = new User();
-                uInfo.setEmail((String) info.get("email"));
+                uInfo.setEmail((String) info.get("email"));  // get the value of "email" from the HashMap
                 uInfo.setType((String) info.get("type"));
 
                 // Display the user info
                 Log.d(TAG, "userInfo: email: " + uInfo.getEmail());
                 Log.d(TAG, "userInfo: type: " + uInfo.getType());
 
-                ArrayList<String> array = new ArrayList<String>();
-                array.add(uInfo.getEmail());
-                array.add(uInfo.getType());
+                // Add the user info into an arrayList
+                ArrayList<String> userInfoArray = new ArrayList<String>();
+                userInfoArray.add(uInfo.getEmail());
+                userInfoArray.add(uInfo.getType());
 
-                ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, array);
+                // Set the userinfoArray into the ListView by using an adapter
+                ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, userInfoArray);
                 mListView.setAdapter(adapter);
             }
         }
     }
 
-    //make sure the listener is active
-    public void onStart(){
-        super.onStart();
-        mAuth.addAuthStateListener(mAuthListener );
-    }
 
-    public void onStop(){
-        super.onStop();
-        if(mAuthListener != null){
-            mAuth.removeAuthStateListener(mAuthListener);
-        }
-    }
-
-    private void toastMessage(String message){
-        Toast.makeText(this,message,Toast.LENGTH_LONG).show();
-    }
 
 }
