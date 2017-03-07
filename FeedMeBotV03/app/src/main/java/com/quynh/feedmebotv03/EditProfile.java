@@ -77,7 +77,7 @@ public class EditProfile extends AppCompatActivity{
         String major  = majorEdit.getText().toString().trim();
         String birthday  = birthdayEdit.getText().toString().trim();
         String phone  = phoneEdit.getText().toString().trim();
-        
+
         if (!(name.equals(""))){
             mUserInfoRef.child(userID).child("name").setValue(name);
         }
