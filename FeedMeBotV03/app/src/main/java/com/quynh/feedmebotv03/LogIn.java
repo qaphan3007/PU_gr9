@@ -195,6 +195,10 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener {
                         HashMap<String, String> userEntry = new HashMap<String, String>();
                         userEntry.put("email", email);
                         userEntry.put("type", "student");
+                        userEntry.put("name","null");
+                        userEntry.put("phone", "null");
+                        userEntry.put("birthday","null");
+
                         mDatabase.child("UserInfo").child(userID).setValue(userEntry);  // Create key=userID & push the name,email under it
 
                         startActivity(new Intent(getApplicationContext(), ViewUserInfo.class));  // Move to Profile View
