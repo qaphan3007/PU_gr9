@@ -42,6 +42,8 @@ public class ViewUserInfo extends AppCompatActivity {
     private ListView mListView;
 
     private Button editProfile;
+    private Button logOut;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -88,9 +90,20 @@ public class ViewUserInfo extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent edit = new Intent(getApplicationContext(), EditProfile.class);
-                startActivity(edit);  // Move view to ProfLogIn
+                startActivity(edit);  // Move view to Edit Profile
             }
         });
+
+        logOut = (Button) findViewById(R.id.log_out);
+        logOut.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                mAuth.signOut();
+                Intent edit = new Intent(getApplicationContext(), LogIn.class);
+                startActivity(edit);  // Move view to LogIn
+            }
+        });
+
 
     }
 
