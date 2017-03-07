@@ -25,7 +25,9 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 
-// This is the class that will run when "app" is run. It logs the STUDENT in (or registers).
+// This is the class that will run when "app" is run. It logs the student in (or registers).
+// It uses the FirebaseAuth object to store the accounts, and each time there is a new user
+// this is added as a (student) entry to the "UserInfo" child of our database.
 
 public class LogIn extends AppCompatActivity implements View.OnClickListener {
 
@@ -42,7 +44,6 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener {
     // Defining firebaseauth object => Add auth members
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
-    private FirebaseUser currentUser;
     private DatabaseReference mDatabase;
     private String userID;
 
@@ -53,17 +54,14 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener {
 
         mAuth = FirebaseAuth.getInstance();         //initializing firebase auth object
 
-        // Initialize views
+        // Initialize views and buttons
         editTextEmail = (EditText) findViewById(R.id.editTextEmail);
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);
         buttonSignIn = (Button) findViewById(R.id.buttonSignIn);
         buttonSignup = (Button) findViewById(R.id.buttonSignup);
         buttonProf = (Button) findViewById(R.id.buttonProf);
         progressDialog = new ProgressDialog(this);
-
-        mDatabase = FirebaseDatabase.getInstance().getReference();   // Ref to Database
-        FirebaseUser user = mAuth.getCurrentUser();
-        userID = user.getUid();
+        mDatabase = FirebaseDatabase.getInstance().getReference();
 
         //Get a reference to the Firebase auth object
         mAuthListener = new FirebaseAuth.AuthStateListener() {
@@ -81,39 +79,28 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener {
             }
         };
 
-        mDatabase.child("UserInfo").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // When there is change to the database, log it. (save it)
-                Log.d("Adding Value", "onDataChange: Added info to database: \n" +
-                dataSnapshot.getValue());   // Value of this is going to be the key
-            }
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                Log.d("Adding Value","Failed to add value.", databaseError.toException());
-            }
-        });
 
-        //attaching listener to button
+        //attaching listeners to buttons
         buttonSignup.setOnClickListener(this);
         buttonSignIn.setOnClickListener(this);
         buttonProf.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                Intent profLog = new Intent(getApplicationContext(), ProfLogIn.class);
-                startActivity(profLog);  // Move view to ProfLogIn
+                Intent login = new Intent(getApplicationContext(), ProfLogIn.class);
+                startActivity(login);  // Move view to ProfLogIn
             }
         });
 
     }
 
 
-    //make sure the listener is active
+    // make sure the Auth listener is active
     public void onStart(){
         super.onStart();
         mAuth.addAuthStateListener(mAuthListener );
     }
 
+    // Remove the Auth listener when app is finished.
     public void onStop(){
         super.onStop();
         if(mAuthListener != null){
@@ -121,7 +108,7 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
-
+    // When user click on either login or register button, change FirebaseAuth user.
     @Override
     public void onClick(View view) {
         if (view == buttonSignup) {
@@ -135,96 +122,96 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener {
     }
 
 
+    // Check whether the user has typed in correct format in the input fields.
+    private boolean checkValidInputField(String email, String password){
+        //Check for valid email and password
+        if(TextUtils.isEmpty(email)){
+            toastMessage("Email field must not be empty.");
+            return false;
+        }
+        else if(!email.contains("@")){
+            toastMessage("Invalid email. (missing a @)");
+            return false;
+        }
+        else if(TextUtils.isEmpty(password)){
+            toastMessage("Password field must not be empty!");
+            return false;
+
+        }
+        else if(password.length() < 10) {
+            toastMessage("Password must at least contain 10 characters.");
+            return false;
+        }
+        else {return true;}
+    }
+
+
+    // Sign user in via the Auth object.
     private void signInUserIn() {
         String email = editTextEmail.getText().toString();
         String password = editTextPassword.getText().toString();
 
-        if (TextUtils.isEmpty(email)) {
-            Toast.makeText(this, "Please enter email", Toast.LENGTH_LONG).show();
-            return;
-        }
+        if (checkValidInputField(email,password)) {
+            //Sign the user in with email and password credentials
+            mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
 
-        if (TextUtils.isEmpty(password)) {
-            Toast.makeText(this, "Please enter email", Toast.LENGTH_LONG).show();
-            return;
-        }
-
-        //Sign the user in with email and password credentials
-        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-
-                if (task.isSuccessful()) {
-                    Toast.makeText(LogIn.this, "user was logged in", Toast.LENGTH_SHORT).show();
-                    finish();
-                    //display some message here
-                    startActivity(new Intent(getApplicationContext(), ViewUserInfo.class));  // Move view to HomePage
-                } else {
-                    Toast.makeText(LogIn.this, "Failed to log in", Toast.LENGTH_SHORT).show();
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()) {
+                        toastMessage("User is logged in.");
+                        finish();
+                        startActivity(new Intent(getApplicationContext(), ViewUserInfo.class));  // Move view to Profile
+                    } else {
+                        toastMessage("Failed to log in.");
+                    }
                 }
-            }
-        });
+            });
+        }
     }
 
 
+    // Register new user with the Auth object, then add this new user entry to the database.
     private void registerUser(){
-        //get email and password from edittexts
+        //get email and password from the input field
         final String email = editTextEmail.getText().toString().trim();
         String password  = editTextPassword.getText().toString().trim();
 
-        //checking if email and passwords are empty
-        if(TextUtils.isEmpty(email)){
-            Toast.makeText(this,"Please enter email",Toast.LENGTH_LONG).show();
-            return;
-        }
+        if (checkValidInputField(email,password)) {
 
-        if(!email.contains("@")){
-            Toast.makeText(this,"Invalid Email",Toast.LENGTH_LONG).show();
-            return;
-        }
+            // If the email and password are valid, display a progess log
+            progressDialog.setMessage("Registering Please Wait...");
+            progressDialog.show();
 
-        if(TextUtils.isEmpty(password)){
-            Toast.makeText(this,"Please enter password",Toast.LENGTH_LONG).show();
-            return;
+            //creating a new user
+            mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    //checking if success
+                    if (task.isSuccessful()) {
+                        finish();
+                        // Get the current logged in user
+                        FirebaseUser user = mAuth.getCurrentUser();
+                        userID = user.getUid();
 
-        }
-        if(password.length() < 10) {
-            Toast.makeText(this, "Password must at least contain 10 characters", Toast.LENGTH_LONG).show();
-            return;
-        }
+                        // Make a new user entry in the database
+                        HashMap<String, String> userEntry = new HashMap<String, String>();
+                        userEntry.put("email", email);
+                        userEntry.put("type", "student");
+                        mDatabase.child("UserInfo").child(userID).setValue(userEntry);  // Create key=userID & push the name,email under it
 
-        // If the email and password are not empty
-        // display a progress dialog
-        progressDialog.setMessage("Registering Please Wait...");
-        progressDialog.show();
-
-        //creating a new user
-        mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                //checking if success
-                if(task.isSuccessful()){
-                    finish();
-
-                    // Make a new user entry in the database
-                    HashMap<String,String> userEntry = new HashMap<String,String>();
-                    userEntry.put("email",email);   // userEntry = { email = email, type=student}
-                    userEntry.put("type","student");
-                    mDatabase.child("UserInfo").child(userID).setValue(userEntry);  // Create key=userID & push the name,email under it
-
-                    startActivity(new Intent(getApplicationContext(), ViewUserInfo.class));  // Move to View User Profile
-                }else{
-                    // Display tddddhe error message
-                    Toast.makeText(LogIn.this,"Registration Error",Toast.LENGTH_LONG).show();
+                        startActivity(new Intent(getApplicationContext(), ViewUserInfo.class));  // Move to Profile View
+                    } else {
+                        // Display the error message
+                        toastMessage("Registration error.");
+                    }
+                    progressDialog.dismiss();
                 }
-                progressDialog.dismiss();
-            }
-        });
-
+            });
+        }
     }
 
 
+    // Show message on the screen.
     private void toastMessage(String message){
         Toast.makeText(this,message,Toast.LENGTH_LONG).show();
     }

@@ -31,6 +31,7 @@ import java.util.HashMap;
 
 // This class is a copy of the Login.java class. It does everything the exact same way,
 // except now it handles the professors' login.
+// The only difference is that when adding new user entries to the database, it adds type "teacher".
 
 public class ProfLogIn extends AppCompatActivity implements View.OnClickListener {
 
@@ -47,7 +48,6 @@ public class ProfLogIn extends AppCompatActivity implements View.OnClickListener
     // Defining firebaseauth object => Add auth members
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
-    private FirebaseUser currentUser;
     private DatabaseReference mDatabase;
     private String userID;
 
@@ -58,7 +58,7 @@ public class ProfLogIn extends AppCompatActivity implements View.OnClickListener
 
         mAuth = FirebaseAuth.getInstance();         //initializing firebase auth object
 
-        // Initialize views
+        // Initialize views and buttons
         editTextEmail = (EditText) findViewById(R.id.editTextEmail);
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);
         buttonSignIn = (Button) findViewById(R.id.buttonSignIn);
@@ -66,8 +66,6 @@ public class ProfLogIn extends AppCompatActivity implements View.OnClickListener
         buttonStud = (Button) findViewById(R.id.buttonStud);
         progressDialog = new ProgressDialog(this);
         mDatabase = FirebaseDatabase.getInstance().getReference();
-        FirebaseUser user = mAuth.getCurrentUser();
-        userID = user.getUid();
 
         //Get a reference to the Firebase auth object
         mAuthListener = new FirebaseAuth.AuthStateListener() {
@@ -85,20 +83,8 @@ public class ProfLogIn extends AppCompatActivity implements View.OnClickListener
             }
         };
 
-        mDatabase.child("UserInfo").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // When there is change to the database, log it. (save it)
-                Log.d("Adding Value", "onDataChange: Added info to database: \n" +
-                        dataSnapshot.getValue());   // Value of this is going to be the key
-            }
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                Log.d("Adding Value","Failed to add value.", databaseError.toException());
-            }
-        });
 
-        //attaching listener to button
+        //attaching listeners to buttons
         buttonSignup.setOnClickListener(this);
         buttonSignIn.setOnClickListener(this);
         buttonStud.setOnClickListener(new View.OnClickListener(){
@@ -112,12 +98,13 @@ public class ProfLogIn extends AppCompatActivity implements View.OnClickListener
     }
 
 
-    //make sure the listener is active
+    // make sure the Auth listener is active
     public void onStart(){
         super.onStart();
         mAuth.addAuthStateListener(mAuthListener );
     }
 
+    // Remove the Auth listener when app is finished.
     public void onStop(){
         super.onStop();
         if(mAuthListener != null){
@@ -125,7 +112,7 @@ public class ProfLogIn extends AppCompatActivity implements View.OnClickListener
         }
     }
 
-
+    // When user click on either login or register button, change FirebaseAuth user.
     @Override
     public void onClick(View view) {
         if (view == buttonSignup) {
@@ -138,6 +125,8 @@ public class ProfLogIn extends AppCompatActivity implements View.OnClickListener
         }
     }
 
+
+    // Check whether the user has typed in correct format in the input fields.
     private boolean checkValidInputField(String email, String password){
         //Check for valid email and password
         if(TextUtils.isEmpty(email)){
@@ -161,6 +150,7 @@ public class ProfLogIn extends AppCompatActivity implements View.OnClickListener
     }
 
 
+    // Sign user in via the Auth object.
     private void signInUserIn() {
         String email = editTextEmail.getText().toString();
         String password = editTextPassword.getText().toString();
@@ -171,7 +161,6 @@ public class ProfLogIn extends AppCompatActivity implements View.OnClickListener
 
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
-
                     if (task.isSuccessful()) {
                         toastMessage("User was logged in.");
                         finish();
@@ -186,6 +175,7 @@ public class ProfLogIn extends AppCompatActivity implements View.OnClickListener
     }
 
 
+    // Register new user with the Auth object, then add this new user entry to the database.
     private void registerUser(){
         //get email and password from the input field
         final String email = editTextEmail.getText().toString().trim();
@@ -204,6 +194,9 @@ public class ProfLogIn extends AppCompatActivity implements View.OnClickListener
                     //checking if success
                     if (task.isSuccessful()) {
                         finish();
+                        // Get the current logged in user
+                        FirebaseUser user = mAuth.getCurrentUser();
+                        userID = user.getUid();
 
                         // Make a new user entry in the database
                         HashMap<String, String> userEntry = new HashMap<String, String>();
@@ -223,6 +216,7 @@ public class ProfLogIn extends AppCompatActivity implements View.OnClickListener
     }
 
 
+    // Show message on the screen.
     private void toastMessage(String message){
         Toast.makeText(this,message,Toast.LENGTH_LONG).show();
     }

@@ -18,5 +18,21 @@ public class EditProfile extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.edit_user_info);
 
+        /*
+        // Save the changes to the database.
+        mDatabase.child("UserInfo").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // When there is change to the database, log it. (save it)
+                Log.d("Adding Value", "onDataChange: Added info to database: \n" +
+                        dataSnapshot.getValue());   // Value of this is the userID
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.d("Adding Value","Failed to add value.", databaseError.toException());
+            }
+        });
+        */
+
     }
 }
