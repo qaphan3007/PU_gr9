@@ -17,11 +17,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 
@@ -158,7 +155,7 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener {
                     if (task.isSuccessful()) {
                         toastMessage("User is signed in.");
                         finish();
-                        startActivity(new Intent(getApplicationContext(), ViewUserInfo.class));  // Move view to Profile
+                        startActivity(new Intent(getApplicationContext(), Profile.class));  // Move view to Profile
                     } else {
                         toastMessage("Failed to log in.");
                     }
@@ -201,7 +198,7 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener {
 
                         mDatabase.child("UserInfo").child(userID).setValue(userEntry);  // Create key=userID & push the name,email under it
 
-                        startActivity(new Intent(getApplicationContext(), ViewUserInfo.class));  // Move to Profile View
+                        startActivity(new Intent(getApplicationContext(), Profile.class));  // Move to Profile View
                     } else {
                         // Display the error message
                         toastMessage("Registration error.");
@@ -212,7 +209,6 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener {
         }
     }
     public void goToSurvey(View view) {
-
         Intent intent = new Intent(this, Survey.class);
         startActivity(intent);
     }

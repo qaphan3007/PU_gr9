@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context="com.quynh.feedmebotv03.ViewUserInfo">
+    tools:context="com.quynh.feedmebotv03.Profile">
 
 
     <TextView
@@ -28,6 +28,13 @@
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
         android:text="Edit Profile" />
+
+    <Button
+        android:id="@+id/course_overview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:text="Course Overview" />
 
     <Button
         android:id="@+id/log_out"

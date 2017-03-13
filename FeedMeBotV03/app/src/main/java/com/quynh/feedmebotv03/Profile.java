@@ -43,6 +43,7 @@ public class Profile extends AppCompatActivity {
     private ListView mListView;
 
     private Button editProfile;
+    private Button courseOverview;
     private Button logOut;
 
 
@@ -84,7 +85,7 @@ public class Profile extends AppCompatActivity {
 
             }
         });
-
+        /*
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
@@ -94,6 +95,7 @@ public class Profile extends AppCompatActivity {
                 Log.d(TAG,"Chose listView item position: " + position);
             }
         });
+        */
 
         // Jump to Edit Profile page
         editProfile = (Button) findViewById(R.id.edit_profile);
@@ -105,13 +107,23 @@ public class Profile extends AppCompatActivity {
             }
         });
 
+        courseOverview = (Button) findViewById(R.id.course_overview);
+        logOut.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), CourseOverview.class);
+                startActivity(intent);
+            }
+        });
+
+
         logOut = (Button) findViewById(R.id.log_out);
         logOut.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
                 mAuth.signOut();
-                Intent edit = new Intent(getApplicationContext(), LogIn.class);
-                startActivity(edit);  // Move view to LogIn
+                Intent logOut = new Intent(getApplicationContext(), LogIn.class);
+                startActivity(logOut);  // Move view to LogIn
             }
         });
 

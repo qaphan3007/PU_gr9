@@ -17,7 +17,7 @@ public class Survey extends AppCompatActivity {
     TextView textViewHour;
     SeekBar seekBarHour;
     SeekBar seekBarDifficultLevel;
-    Assignment assignment; // create an assignment object@
+    Assignment assignment; // create a global assignment object
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

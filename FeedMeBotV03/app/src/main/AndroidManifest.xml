@@ -21,9 +21,10 @@
         <activity android:name=".SecondQuestion" />
         <activity android:name=".ThirdQuestion" />
         <activity android:name=".ProfLogIn" />
-        <activity android:name=".ViewUserInfo" />
+        <activity android:name=".Profile" />
         <activity android:name=".EditProfile" />
         <activity android:name=".Survey" />
+        <activity android:name=".CourseOverview" />
         <activity android:name=".Survey1"></activity>
     </application>
 
