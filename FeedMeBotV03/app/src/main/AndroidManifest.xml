@@ -15,16 +15,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".HomePage" />
         <activity android:name=".JavaOverhead" />
         <activity android:name=".FirstQuestion" />
         <activity android:name=".SecondQuestion" />
-        <activity android:name=".ThirdQuestion"/>
+        <activity android:name=".ThirdQuestion" />
         <activity android:name=".ProfLogIn" />
         <activity android:name=".ViewUserInfo" />
         <activity android:name=".EditProfile" />
-
+        <activity android:name=".Survey" />
+        <activity android:name=".Survey1"></activity>
     </application>
 
 </manifest>

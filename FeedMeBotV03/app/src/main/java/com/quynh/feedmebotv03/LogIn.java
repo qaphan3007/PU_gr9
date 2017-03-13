@@ -211,6 +211,11 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener {
             });
         }
     }
+    public void goToSurvey(View view) {
+
+        Intent intent = new Intent(this, Survey.class);
+        startActivity(intent);
+    }
 
 
     // Show message on the screen.

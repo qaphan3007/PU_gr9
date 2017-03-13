@@ -48,7 +48,6 @@ public class FirstQuestion extends AppCompatActivity {
         Intent intent = new Intent(this, SecondQuestion.class);
         startActivity(intent);
 
-
     }
 }
 
