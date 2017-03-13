@@ -1,4 +1,4 @@
-package com.quynh.feedmebotv03;
+package com.quynh.feedmebot;
 
 /**
  * Created by qaphan3007 on 05.03.2017.
@@ -105,14 +105,7 @@ public class Profile extends AppCompatActivity {
             }
         });
 
-        courseOverview = (Button) findViewById(R.id.course_overview);
-        logOut.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), CourseOverview.class);
-                startActivity(intent);
-            }
-        });
+
 
 
         logOut = (Button) findViewById(R.id.log_out);

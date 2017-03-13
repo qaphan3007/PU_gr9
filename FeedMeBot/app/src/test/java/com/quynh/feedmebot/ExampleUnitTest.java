@@ -1,4 +1,4 @@
-package com.example.sterri.feedmebot;
+package com.quynh.feedmebot;
 
 import org.junit.Test;
 

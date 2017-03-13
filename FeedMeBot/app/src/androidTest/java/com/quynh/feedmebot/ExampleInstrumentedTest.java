@@ -1,4 +1,4 @@
-package com.example.sterri.feedmebot;
+package com.quynh.feedmebot;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.example.sterri.feedmebot", appContext.getPackageName());
+        assertEquals("com.quynh.feedmebot", appContext.getPackageName());
     }
 }
