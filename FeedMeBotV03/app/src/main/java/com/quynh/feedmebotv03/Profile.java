@@ -11,6 +11,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -30,8 +31,8 @@ import java.util.Map;
 
 // This class shows all available userInfo under each userID as a list.
 
-public class ViewUserInfo extends AppCompatActivity {
-    public static final String TAG = "ViewUserInfo";
+public class Profile extends AppCompatActivity {
+    public static final String TAG = "Profile";
 
     private FirebaseDatabase mFirebaseDatabase;
     private FirebaseAuth mAuth;
@@ -81,6 +82,16 @@ public class ViewUserInfo extends AppCompatActivity {
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
+            }
+        });
+
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position,long arg3) {
+                view.setSelected(true);
+                System.out.println("Chose listView item position: " + position);
+                Log.d(TAG,"Chose listView item position: " + position);
             }
         });
 
