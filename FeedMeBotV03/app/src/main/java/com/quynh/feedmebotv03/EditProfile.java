@@ -65,7 +65,7 @@ public class EditProfile extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 updateData();
-                Intent edit = new Intent(getApplicationContext(), ViewUserInfo.class);
+                Intent edit = new Intent(getApplicationContext(), Profile.class);
                 startActivity(edit);  // Move view to User Profile
             }
         });

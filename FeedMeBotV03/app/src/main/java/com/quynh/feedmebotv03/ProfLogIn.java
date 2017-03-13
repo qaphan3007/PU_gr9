@@ -165,7 +165,7 @@ public class ProfLogIn extends AppCompatActivity implements View.OnClickListener
                         toastMessage("User was logged in.");
                         finish();
                         //display some message here
-                        startActivity(new Intent(getApplicationContext(), ViewUserInfo.class));  // Move view to Profile
+                        startActivity(new Intent(getApplicationContext(), Profile.class));  // Move view to Profile
                     } else {
                         toastMessage("Failed to log in.");
                     }
@@ -207,7 +207,7 @@ public class ProfLogIn extends AppCompatActivity implements View.OnClickListener
                         userEntry.put("birthday","null");
                         mDatabase.child("UserInfo").child(userID).setValue(userEntry);  // Create key=userID & push the name,email under it
 
-                        startActivity(new Intent(getApplicationContext(), ViewUserInfo.class));  // Move to Profile View
+                        startActivity(new Intent(getApplicationContext(), Profile.class));  // Move to Profile View
                     } else {
                         // Display the error message
                         toastMessage("Registration error.");
