@@ -104,7 +104,7 @@ public class Profile extends AppCompatActivity {
                 startActivity(edit);  // Move view to Edit Profile
             }
         });
-
+        /*
         courseOverview = (Button) findViewById(R.id.course_overview);
         logOut.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -112,7 +112,7 @@ public class Profile extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), CourseOverview.class);
                 startActivity(intent);
             }
-        });
+        });*/
 
 
         logOut = (Button) findViewById(R.id.log_out);
