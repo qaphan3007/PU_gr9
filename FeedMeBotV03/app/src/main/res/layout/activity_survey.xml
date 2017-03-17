@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/lib/com.quynh.feedmebotv03"
+    xmlns:app2="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -38,17 +39,17 @@
         android:layout_width="0dp"
         android:layout_height="442dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="53dp"
         android:fillViewport="true"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_constraintLeft_creator="1"
         tools:layout_constraintRight_creator="1"
-        tools:layout_constraintTop_creator="1">
+        tools:layout_constraintTop_creator="1"
+        tools:layout_editor_absoluteX="0dp"
+        app2:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="16dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -127,14 +128,16 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Youtube" />
+                    android:text="Youtube"
+                    android:onClick="selectItem"/>
 
                 <CheckBox
                     android:id="@+id/checkBox2"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Lecture" />
+                    android:text="Lecture"
+                    android:onClick="selectItem"/>
             </LinearLayout>
 
             <LinearLayout
@@ -147,14 +150,16 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Piazza" />
+                    android:text="Piazza"
+                    android:onClick="selectItem"/>
 
                 <CheckBox
                     android:id="@+id/checkBox4"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Stack overflow" />
+                    android:text="Stack overflow"
+                    android:onClick="selectItem"/>
             </LinearLayout>
 
             <LinearLayout
@@ -167,33 +172,38 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Syllabus" />
+                    android:text="Syllabus"
+                    android:onClick="selectItem"/>
 
                 <CheckBox
                     android:id="@+id/checkBox6"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Other" />
+                    android:text="Other"
+                    android:onClick="selectItem"/>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/button14"
-                    android:layout_width="match_parent"
+                    android:id="@+id/button12"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Button" />
+                    android:layout_weight="1"
+                    android:text="Go back" />
 
                 <Button
-                    android:id="@+id/button13"
-                    android:layout_width="match_parent"
+                    android:id="@+id/button11"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Button" />
+                    android:layout_weight="1"
+                    android:text="Finish" />
             </LinearLayout>
+
         </LinearLayout>
     </ScrollView>
 
