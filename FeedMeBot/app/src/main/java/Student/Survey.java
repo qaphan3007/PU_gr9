@@ -1,22 +1,32 @@
-package com.quynh.feedmebot;
+package Student;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.quynh.feedmebot.R;
 
 import NonActivities.Assignment;
 
 // Survey class is a common class with questions for all assignments in all subjects
 public class Survey extends AppCompatActivity {
     final String TAG = "test1233";
+
+    // Initialize needed items
     TextView textViewTest;
     TextView textView;
     TextView textViewHour;
     SeekBar seekBarHour;
     SeekBar seekBarDifficultLevel;
-    Assignment assignment; // create a global assignment object
+    Button sendButton;
+    Assignment assignment;
+    private DatabaseReference mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,6 +96,22 @@ public class Survey extends AppCompatActivity {
 
             }
         });
+
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+
+        sendButton = (Button) findViewById(R.id.sendButton);
+        sendButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                // On click sends all the data from assignment to the database
+                updateData();
+                // Then sends the user back to the previous page
+            }
+        });
+    }
+
+    private void updateData(){
+
     }
 }
 

@@ -27,7 +27,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import LogIn.LogIn;
+import Student.LogIn;
 import NonActivities.User;
 
 // This class shows all available userInfo under each userID as a list.
@@ -72,7 +72,7 @@ public class Profile extends AppCompatActivity {
             }
         };
 
-        // Every time there is a change to the database at myRef, this is updated
+        // Every time there is a change to the database at myRef, we call showData to show the user info
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -87,12 +87,14 @@ public class Profile extends AppCompatActivity {
             }
         });
         /*
+        // Save selected ListView items
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,long arg3) {
                 view.setSelected(true);
                 System.out.println("Chose listView item position: " + position);
+                toastMessage("Chose listView item position: " + Integer.toString(position));
                 Log.d(TAG,"Chose listView item position: " + position);
             }
         });
@@ -107,9 +109,6 @@ public class Profile extends AppCompatActivity {
                 startActivity(edit);  // Move view to Edit Profile
             }
         });
-
-
-
 
         logOut = (Button) findViewById(R.id.log_out);
         logOut.setOnClickListener(new View.OnClickListener(){
@@ -134,6 +133,7 @@ public class Profile extends AppCompatActivity {
                 Object userinfo = userMap.get(userID);     // This is the map under the child with key = userID
                 HashMap<String,Object> info = (HashMap<String,Object>) userinfo;  // Cast Object to HashMap
 
+                // Save the values of the user info in a User object
                 User uInfo = new User();
                 uInfo.setEmail((String) info.get("email"));
                 uInfo.setType((String) info.get("type"));
@@ -144,19 +144,20 @@ public class Profile extends AppCompatActivity {
                 Log.d(TAG, "userInfo: email: " + uInfo.getEmail());
                 Log.d(TAG, "userInfo: type: " + uInfo.getType());
 
-                // Display the user info
-                ArrayList<String> array = new ArrayList<>();
-                array.add("Email:      " + uInfo.getEmail());
-                array.add("Type:       " + uInfo.getType());
+                // Format the user info with correct label
+                ArrayList<String> formatedUserInfo = new ArrayList<>();
+                formatedUserInfo.add("Email:      " + uInfo.getEmail());
+                formatedUserInfo.add("Type:       " + uInfo.getType());
                 if (!uInfo.getName().equals("null")){
-                    array.add("Name:     " + uInfo.getName());
+                    formatedUserInfo.add("Name:     " + uInfo.getName());
                 } if (!uInfo.getPhone().equals("null")){
-                    array.add("Phone:    " + uInfo.getPhone());
+                    formatedUserInfo.add("Phone:    " + uInfo.getPhone());
                 } if (!uInfo.getDate().equals("null")) {
-                    array.add("Birthday: " + uInfo.getDate());
+                    formatedUserInfo.add("Birthday: " + uInfo.getDate());
                 }
 
-                ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, array);
+                // The ListView shows the items from the array formatedUserInfo using an adapter
+                ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, formatedUserInfo);
                 mListView.setAdapter(adapter);
             }
         }

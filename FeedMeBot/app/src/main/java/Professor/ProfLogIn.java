@@ -1,4 +1,4 @@
-package LogIn;
+package Professor;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -23,6 +23,8 @@ import com.quynh.feedmebot.Profile;
 import com.quynh.feedmebot.R;
 
 import java.util.HashMap;
+
+import Student.LogIn;
 
 /**
  * Created by qaphan3007 on 05.03.2017.

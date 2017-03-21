@@ -1,4 +1,4 @@
-package LogIn;
+package Student;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -21,9 +21,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.quynh.feedmebot.Profile;
 import com.quynh.feedmebot.R;
-import com.quynh.feedmebot.Survey;
 
 import java.util.HashMap;
+
+import Professor.ProfLogIn;
 
 // This is the class that will run when "app" is run. It logs the student in (or registers).
 // It uses the FirebaseAuth object to store the accounts, and each time there is a new user

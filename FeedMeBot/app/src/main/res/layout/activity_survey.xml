@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.quynh.feedmebot.Survey">
+    tools:context="Student.Survey">
 
     <LinearLayout
         android:layout_width="0dp"
@@ -183,7 +183,7 @@
                 android:orientation="vertical">
 
                 <Button
-                    android:id="@+id/button14"
+                    android:id="@+id/sendButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Button" />
