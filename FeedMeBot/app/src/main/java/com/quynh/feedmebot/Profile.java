@@ -52,12 +52,12 @@ public class Profile extends AppCompatActivity {
     private Button logOut;
 
 
-
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.profile);
+
+        // Save the chosen ListView item as a variable savedInfo
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
         mListView = (ListView) findViewById(R.id.listview);
         mListView.setAdapter(adapter);
@@ -102,19 +102,7 @@ public class Profile extends AppCompatActivity {
 
             }
         });
-        /*
-        // Save selected ListView items
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position,long arg3) {
-                view.setSelected(true);
-                System.out.println("Chose listView item position: " + position);
-                toastMessage("Chose listView item position: " + Integer.toString(position));
-                Log.d(TAG,"Chose listView item position: " + position);
-            }
-        });
-        */
 
         // Jump to Edit Profile page
         editProfile = (Button) findViewById(R.id.edit_profile);
@@ -133,6 +121,15 @@ public class Profile extends AppCompatActivity {
                 mAuth.signOut();
                 Intent logOut = new Intent(getApplicationContext(), LogIn.class);
                 startActivity(logOut);  // Move view to LogIn
+            }
+        });
+
+        courseOverview = (Button) findViewById(R.id.course_overview);
+        courseOverview.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Intent courses = new Intent(getApplicationContext(), CourseOverview.class);
+                startActivity(courses);  // Move view to CourseOverview
             }
         });
 
