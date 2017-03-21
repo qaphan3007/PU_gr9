@@ -6,6 +6,8 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import NonActivities.Assignment;
+
 // Survey class is a common class with questions for all assignments in all subjects
 public class Survey extends AppCompatActivity {
     final String TAG = "test1233";

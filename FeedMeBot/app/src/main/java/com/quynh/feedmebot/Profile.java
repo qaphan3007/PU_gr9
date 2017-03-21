@@ -27,6 +27,9 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import LogIn.LogIn;
+import NonActivities.User;
+
 // This class shows all available userInfo under each userID as a list.
 
 public class Profile extends AppCompatActivity {

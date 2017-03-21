@@ -1,4 +1,4 @@
-package com.quynh.feedmebot;
+package NonActivities;
 
 /**
  * Created by Kv1402 on 05.03.2017.

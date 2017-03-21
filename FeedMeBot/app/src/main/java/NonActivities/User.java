@@ -1,4 +1,4 @@
-package com.quynh.feedmebot;
+package NonActivities;
 
 import java.util.ArrayList;
 

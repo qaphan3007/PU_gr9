@@ -9,14 +9,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LogIn">
+        <activity android:name="LogIn.LogIn">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ProfLogIn" />
+        <activity android:name="LogIn.ProfLogIn" />
         <activity android:name=".Profile" />
         <activity android:name=".EditProfile" />
         <activity android:name=".Survey" />

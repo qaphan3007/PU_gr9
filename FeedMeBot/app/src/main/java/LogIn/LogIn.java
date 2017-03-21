@@ -1,10 +1,10 @@
-package com.quynh.feedmebot;
+package LogIn;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -19,27 +19,26 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.quynh.feedmebot.Profile;
+import com.quynh.feedmebot.R;
+import com.quynh.feedmebot.Survey;
 
 import java.util.HashMap;
 
-/**
- * Created by qaphan3007 on 05.03.2017.
- */
+// This is the class that will run when "app" is run. It logs the student in (or registers).
+// It uses the FirebaseAuth object to store the accounts, and each time there is a new user
+// this is added as a (student) entry to the "UserInfo" child of our database.
 
-// This class is a copy of the Login.java class. It does everything the exact same way,
-// except now it handles the professors' login.
-// The only difference is that when adding new user entries to the database, it adds type "teacher".
+public class LogIn extends AppCompatActivity implements View.OnClickListener {
 
-public class ProfLogIn extends AppCompatActivity implements View.OnClickListener {
-
-    private final String TAG = "Professor Signing In";
+    private final String TAG = "Student Signing In";
 
     // Creating view objects
     private EditText editTextEmail;
     private EditText editTextPassword;
     private Button buttonSignup;
     private Button buttonSignIn;
-    private Button buttonStud;
+    private Button buttonProf;
     private ProgressDialog progressDialog;
 
     // Defining firebaseauth object => Add auth members
@@ -51,7 +50,7 @@ public class ProfLogIn extends AppCompatActivity implements View.OnClickListener
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_prof_log_in);
+        setContentView(R.layout.activity_log_in);
 
         mAuth = FirebaseAuth.getInstance();         //initializing firebase auth object
 
@@ -60,7 +59,7 @@ public class ProfLogIn extends AppCompatActivity implements View.OnClickListener
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);
         buttonSignIn = (Button) findViewById(R.id.buttonSignIn);
         buttonSignup = (Button) findViewById(R.id.buttonSignup);
-        buttonStud = (Button) findViewById(R.id.buttonStud);
+        buttonProf = (Button) findViewById(R.id.buttonProf);
         progressDialog = new ProgressDialog(this);
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
@@ -70,12 +69,10 @@ public class ProfLogIn extends AppCompatActivity implements View.OnClickListener
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
                     Log.d(TAG, "Signed in: " + user.getUid());
-                    toastMessage("Successfully signed in with: "+ user.getEmail());
                     userID = user.getUid();
 
                 } else {
                     Log.d(TAG, "Currently Signed Out");
-                    toastMessage("Successfully signed out.");
                 }
             }
         };
@@ -84,10 +81,10 @@ public class ProfLogIn extends AppCompatActivity implements View.OnClickListener
         //attaching listeners to buttons
         buttonSignup.setOnClickListener(this);
         buttonSignIn.setOnClickListener(this);
-        buttonStud.setOnClickListener(new View.OnClickListener(){
+        buttonProf.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                Intent login = new Intent(getApplicationContext(), LogIn.class);
+                Intent login = new Intent(getApplicationContext(), ProfLogIn.class);
                 startActivity(login);  // Move view to ProfLogIn
             }
         });
@@ -159,9 +156,8 @@ public class ProfLogIn extends AppCompatActivity implements View.OnClickListener
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
-                        toastMessage("User was logged in.");
+                        toastMessage("User is signed in.");
                         finish();
-                        //display some message here
                         startActivity(new Intent(getApplicationContext(), Profile.class));  // Move view to Profile
                     } else {
                         toastMessage("Failed to log in.");
@@ -198,10 +194,11 @@ public class ProfLogIn extends AppCompatActivity implements View.OnClickListener
                         // Make a new user entry in the database
                         HashMap<String, String> userEntry = new HashMap<String, String>();
                         userEntry.put("email", email);
-                        userEntry.put("type", "teacher");
+                        userEntry.put("type", "student");
                         userEntry.put("name","null");
                         userEntry.put("phone", "null");
                         userEntry.put("birthday","null");
+
                         mDatabase.child("UserInfo").child(userID).setValue(userEntry);  // Create key=userID & push the name,email under it
 
                         startActivity(new Intent(getApplicationContext(), Profile.class));  // Move to Profile View
@@ -213,6 +210,10 @@ public class ProfLogIn extends AppCompatActivity implements View.OnClickListener
                 }
             });
         }
+    }
+    public void goToSurvey(View view) {
+        Intent intent = new Intent(this, Survey.class);
+        startActivity(intent);
     }
 
 
