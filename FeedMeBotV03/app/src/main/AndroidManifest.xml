@@ -24,7 +24,7 @@
         <activity android:name=".Profile" />
         <activity android:name=".EditProfile" />
         <activity android:name=".Survey" />
-        <activity android:name=".Survey1"></activity>
+        <activity android:name=".CourseOverview" />
     </application>
 
 </manifest>
