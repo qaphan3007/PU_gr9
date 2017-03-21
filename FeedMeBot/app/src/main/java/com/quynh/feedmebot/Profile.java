@@ -11,6 +11,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -42,18 +43,33 @@ public class Profile extends AppCompatActivity {
 
     private String userID;
     private ListView mListView;
+    private ArrayAdapter<String> adapter;
+    private String var = ""; //Temp name, variable with wich listview clicked on
+    public static String savedInfo;
 
     private Button editProfile;
     private Button courseOverview;
     private Button logOut;
 
 
+
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.profile);
-
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
         mListView = (ListView) findViewById(R.id.listview);
+        mListView.setAdapter(adapter);
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                var = parent.getItemAtPosition(position) + ""; // Sets var equal to clicked listview
+                String[] temp = var.split(":");     //splits string by ":"
+                String savedInfo = temp[1].trim();
+                Toast.makeText(Profile.this, savedInfo, Toast.LENGTH_LONG).show();
+            }
+        });
         mAuth = FirebaseAuth.getInstance();
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         myRef = mFirebaseDatabase.getReference().child("UserInfo");
