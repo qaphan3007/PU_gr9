@@ -167,7 +167,6 @@ public class ProfLogIn extends AppCompatActivity implements View.OnClickListener
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
-                        toastMessage("User was logged in.");
                         currentUser.setEmail(email);
                         currentUser.setType("teacher");
                         finish();

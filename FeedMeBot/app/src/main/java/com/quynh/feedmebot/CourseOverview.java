@@ -1,5 +1,6 @@
 package com.quynh.feedmebot;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -7,6 +8,8 @@ import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -24,6 +27,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
 
+import NonActivities.Assignment;
 import Professor.ProfLogIn;
 import Student.LogIn;
 
@@ -45,15 +49,12 @@ public class CourseOverview extends AppCompatActivity {
     public static final String TAG = "CourseOverview";
 
     private FirebaseDatabase mFirebaseDatabase;
-    private FirebaseAuth mAuth;
-    private FirebaseAuth.AuthStateListener mAuthListener;
     private DatabaseReference myRef;
 
-    private String userID;
     private ListView mListView;
     private ArrayAdapter<String> adapter;
 
-    private Button assignmentOverview;
+    public static Assignment assignment;
 
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
@@ -62,12 +63,13 @@ public class CourseOverview extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.course_overview);
+        assignment = new Assignment();
+
         mListView = (ListView) findViewById(R.id.listview);
 
-        mAuth = FirebaseAuth.getInstance();
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         myRef = mFirebaseDatabase.getReference();
-        
+
         if (Objects.equals(LogIn.currentUser.getType(),"student")) {     // Check what type of user is currently logged in
             // Every time there is a change to the database at StudentSubject, this activates
             myRef.child("StudentSubject").addValueEventListener(new ValueEventListener() {
@@ -100,6 +102,21 @@ public class CourseOverview extends AppCompatActivity {
                 }
             });
         }
+
+        // When the user presses on an item in the listview, save the courseKey in a global variable
+        mListView = (ListView) findViewById(R.id.listview);
+        mListView.setAdapter(adapter);
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String var = parent.getItemAtPosition(position) + ""; // Sets var equal to clicked listview
+                String savedCourse = var.trim();
+                assignment.setCourseKey(savedCourse);
+                Intent assignment = new Intent(getApplicationContext(), CourseOverview.class);
+                startActivity(assignment);  // Move view to AssignmentOverview
+            }
+        });
+
     }
 
 

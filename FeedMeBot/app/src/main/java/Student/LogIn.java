@@ -161,7 +161,6 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
-                        toastMessage("User is signed in.");
                         currentUser.setEmail(email);
                         currentUser.setType("student");
 
