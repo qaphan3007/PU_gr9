@@ -37,12 +37,11 @@ import Student.LogIn;
 
 /**
  * CourseOverview shows a ListView of all courses the user is taking or teaching.
- * When we press on an item and hit button Go, depending on what type the user is, they will be
- * redirected to either AssignmentOverview (shows all avail assignments in that subject) or ProfGraph.
+ * When we press on an item, user is directed to a list of all assignments. (AssignmentOverview)
  *
  * The ListView is data taken from the StudentSubject table in the database.
- * We will also make a global variable courseKey (the subject chosen by user) to be used in
- * AssignmentOverview and Survey.
+ * We will also make a global variable courseKey (the subject chosen by user) within an Assignment object
+ * to be used in AssignmentOverview and Survey.
  */
 
 public class CourseOverview extends AppCompatActivity {
@@ -54,7 +53,7 @@ public class CourseOverview extends AppCompatActivity {
     private ListView mListView;
     private ArrayAdapter<String> adapter;
 
-    public static Assignment assignment;
+    public static Assignment assignment;  // This is the global variable that will be accessed in other classes!
 
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
@@ -112,14 +111,14 @@ public class CourseOverview extends AppCompatActivity {
                 String var = parent.getItemAtPosition(position) + ""; // Sets var equal to clicked listview
                 String savedCourse = var.trim();
                 assignment.setCourseKey(savedCourse);
-                Intent assignment = new Intent(getApplicationContext(), CourseOverview.class);
+                Intent assignment = new Intent(getApplicationContext(), AssignmentOverview.class);
                 startActivity(assignment);  // Move view to AssignmentOverview
             }
         });
 
     }
 
-
+    // TODO: Get data from StudentSubject. Iterate -> if email == currentUser.getEmail(), activeSubjects += courseKey
     private void showDataStudent(DataSnapshot dataSnapshot){
         HashMap<String,Object> studMap = (HashMap<String,Object>) dataSnapshot.getValue();
 
@@ -131,7 +130,7 @@ public class CourseOverview extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)      // For using Objects.equals() in case one of them is null
     private void showDataTeacher(DataSnapshot dataSnapshot) {
-        // studMap is the dictionary: courseKey = courseInfo
+        // subjectMap is the dictionary: generated_keys = courseInfo
         HashMap<String,Object> subjectMap = (HashMap<String,Object>) dataSnapshot.getValue();
 
         // Make a list of all the subjects the teacher is teaching

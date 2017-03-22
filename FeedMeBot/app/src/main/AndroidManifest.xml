@@ -22,6 +22,8 @@
         <activity android:name="Student.Survey" />
         <activity android:name=".CourseOverview" />
         <activity android:name=".AssignmentOverview" />
+        <activity android:name="Professor.Statistics" />
+
     </application>
 
 </manifest>
