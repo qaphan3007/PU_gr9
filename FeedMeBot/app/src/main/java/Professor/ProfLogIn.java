@@ -169,7 +169,6 @@ public class ProfLogIn extends AppCompatActivity implements View.OnClickListener
                     if (task.isSuccessful()) {
                         currentUser.setEmail(email);
                         currentUser.setType("teacher");
-                        LogIn.currentUser.setType("teacher");
 
                         finish();
                         //display some message here
@@ -207,7 +206,6 @@ public class ProfLogIn extends AppCompatActivity implements View.OnClickListener
                         userID = user.getUid();
                         currentUser.setEmail(email);
                         currentUser.setType("teacher");
-                        LogIn.currentUser.setType("teacher");
 
                         // Make a new user entry in the database
                         HashMap<String, String> userEntry = new HashMap<String, String>();

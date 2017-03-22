@@ -5,6 +5,20 @@
     android:layout_height="match_parent"
     tools:context="Professor.Statistics">
 
+    <TextView
+        android:text = ""
+        android:textAlignment="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="25dp"
+        android:textSize="30sp"
+        android:id="@+id/title"
+        />
 
+    <com.jjoe64.graphview.GraphView
+        android:layout_width="match_parent"
+        android:layout_height="200dip"
+        android:layout_margin="25dp"
+        android:id="@+id/assignmentTime" />
 
 </LinearLayout>

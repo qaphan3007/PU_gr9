@@ -163,7 +163,6 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener {
                     if (task.isSuccessful()) {
                         currentUser.setEmail(email);
                         currentUser.setType("student");
-                        ProfLogIn.currentUser.setType("student");
 
                         finish();
                         startActivity(new Intent(getApplicationContext(), Profile.class));  // Move view to Profile
@@ -200,7 +199,6 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener {
                         userID = user.getUid();
                         currentUser.setEmail(email);
                         currentUser.setType("student");
-                        ProfLogIn.currentUser.setType("student");
 
                         // Make a new user entry in the database
                         HashMap<String, String> userEntry = new HashMap<String, String>();

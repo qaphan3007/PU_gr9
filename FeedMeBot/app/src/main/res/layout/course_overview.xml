@@ -32,11 +32,4 @@
     </ListView>
 
 
-    <Button
-        android:id="@+id/assignment_overview"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        android:text="Next" />
-
 </LinearLayout>

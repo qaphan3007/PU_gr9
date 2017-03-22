@@ -9,7 +9,7 @@ public class Assignment {
     private String key; //assignment key
 
     private  String courseKey; //the course key;
-    private Assignment[] assignmentName;
+    private String assignmentName;
 
     //the assigment number
     private String assignmentNr;
@@ -40,11 +40,11 @@ public class Assignment {
 
 
 
-    public Assignment[] getAssignmentName() {
+    public String getAssignmentName() {
         return assignmentName;
     }
 
-    public void setAssignmentName(Assignment[] assignmentName) {
+    public void setAssignmentName(String assignmentName) {
         this.assignmentName = assignmentName;
     }
 

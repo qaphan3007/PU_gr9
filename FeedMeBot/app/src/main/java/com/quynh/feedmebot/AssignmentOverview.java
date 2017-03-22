@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -98,8 +99,11 @@ public class AssignmentOverview extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String var = parent.getItemAtPosition(position) + ""; // Sets var equal to clicked listview
-                String[] temp = var.split(" ");     //splits "Assignment 1" by space
-                String savedAssignmentNr = temp[1].trim();
+                // var is now "Assignment 1: Sprint 1"
+                String[] temp = var.split(":");     // temp = [Assignment 1, Sprint 1]
+                CourseOverview.assignment.setAssignmentName(temp[1]);  // Assignment name is Sprint 1
+
+                String savedAssignmentNr = temp[0].split(" ")[1];  // "Assignment 1" => [Assignment, 1] => 1
                 CourseOverview.assignment.setAssignmentNr(savedAssignmentNr);   // Add the chosen assignmentNr to global assignment varriable
 
                 // Check for currentUser type then move to diff pages accordingly
@@ -128,6 +132,9 @@ public class AssignmentOverview extends AppCompatActivity {
             HashMap<String, Object> course_info = (HashMap<String, Object>) courseInfo;  // Cast Object to HashMap
             // If courseKey is the current course, add all assignments to activeAssignments
             if (Objects.equals(course_info.get("courseKey"), CourseOverview.assignment.getCourseKey())){
+                Log.d(TAG,"subjectMap: "+subjectMap.values().toString());
+                Log.d(TAG,"course_info: "+course_info.toString());
+
                 HashMap<String,Object> assignmentDict = (HashMap<String, Object>) course_info.get("assignments");
                 for (Object assignmentNr : assignmentDict.keySet()) {    // Iterate thru the "assignments" table's keys
                     assignmentString = assignmentNr.toString();      // Each keys in the assignment table is "Assignment 1"
