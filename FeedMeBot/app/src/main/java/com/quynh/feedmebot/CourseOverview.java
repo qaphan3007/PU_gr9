@@ -110,7 +110,7 @@ public class CourseOverview extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String var = parent.getItemAtPosition(position) + ""; // Sets var equal to clicked listview
                 String savedCourse = var.trim();
-                assignment.setCourseKey(savedCourse);
+                assignment.setCourseKey(savedCourse);   // Save the courseKey to a global var
                 Intent assignment = new Intent(getApplicationContext(), AssignmentOverview.class);
                 startActivity(assignment);  // Move view to AssignmentOverview
             }

@@ -78,12 +78,10 @@ public class ProfLogIn extends AppCompatActivity implements View.OnClickListener
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
                     Log.d(TAG, "Signed in: " + user.getUid());
-                    toastMessage("Successfully signed in with: "+ user.getEmail());
                     userID = user.getUid();
 
                 } else {
                     Log.d(TAG, "Currently Signed Out");
-                    toastMessage("Successfully signed out.");
                 }
             }
         };
