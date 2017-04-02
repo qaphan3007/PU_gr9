@@ -1,34 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.sterri.feedmebot">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.quynh.feedmebot">
 
-    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-sdk tools:overrideLibrary="android.support.v18.leanback"/>
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name="Student.LogIn">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".HomePage" />
-        <activity android:name=".JavaOversikt" />
-        <activity android:name=".JavaAssignment1" />
-        <activity android:name=".JavaAssignment12" />
-        <activity android:name=".HomePageProfessor" />
-        <activity android:name=".PUserProfile" />
-        <activity android:name=".PCourses" />
-        <activity
-            android:name=".PFeedBacks"
-            android:label="@string/title_activity_pfeed_backs"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".PStatistics"></activity>
+        <activity android:name="Professor.ProfLogIn" />
+        <activity android:name=".Profile" />
+        <activity android:name=".EditProfile" />
+        <activity android:name="Student.Survey" />
+        <activity android:name=".CourseOverview" />
+        <activity android:name=".AssignmentOverview" />
+        <activity android:name="Professor.Statistics" />
+
     </application>
 
 </manifest>
