@@ -1,0 +1,4 @@
+#Tue Mar 07 09:54:17 CET 2017
+base.0=/Users/Sterri/Documents/PU/PU_gr9/FeedMeBotV03/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_6
+renamed.0=classes.dex
+file.0=/Users/Sterri/Documents/PU/PU_gr9/FeedMeBotV03/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_6/classes.dex

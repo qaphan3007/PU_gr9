@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -11,6 +12,8 @@ import android.widget.Toast;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.quynh.feedmebot.R;
+
+import java.util.ArrayList;
 
 import NonActivities.Assignment;
 
@@ -25,14 +28,26 @@ public class Survey extends AppCompatActivity {
     SeekBar seekBarHour;
     SeekBar seekBarDifficultLevel;
     Button sendButton;
+    CheckBox checkBox_youtube, checkBox_piazza, checkBox_lectures, checkBox_syllabus, checkBox_other,checkBox_stackOverflow;
     Assignment assignment;
     private DatabaseReference mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_survey);
+        setContentView(R.layout.activity_survey) ;
+
+
         final Assignment assignment = new Assignment();
+        checkBox_lectures = (CheckBox) (findViewById(R.id.checkBox_lecture));
+        checkBox_youtube = (CheckBox) findViewById(R.id.checkBox_youtube);
+        checkBox_piazza = (CheckBox) findViewById(R.id.checkBox_piazza);
+        checkBox_syllabus = (CheckBox) findViewById(R.id.checkBox_syllabus);
+        checkBox_other = (CheckBox) findViewById(R.id.checkBox_other);
+        checkBox_stackOverflow = (CheckBox) findViewById(R.id.checkBox_stack);
+
+
+
         textViewHour = (TextView) (findViewById(R.id.textViewHour));
         seekBarHour = (SeekBar) findViewById(R.id.seekBarHours);
         seekBarHour.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -97,21 +112,54 @@ public class Survey extends AppCompatActivity {
             }
         });
 
+
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
-        sendButton = (Button) findViewById(R.id.sendButton);
+       sendButton = (Button) findViewById(R.id.sendButton);
         sendButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
                 // On click sends all the data from assignment to the database
+                completeSurvey();
                 updateData();
                 // Then sends the user back to the previous page
             }
         });
+
+
     }
 
     private void updateData(){
 
+    }
+    public void completeSurvey(){
+
+        //String [] recourses = new String[5];
+        ArrayList<String> recourses = new ArrayList<>();
+        StringBuffer test = new StringBuffer();
+        if( checkBox_lectures.isChecked()){
+            recourses.add("lectures");
+            test.append("lectures");
+        }
+        if(checkBox_youtube.isChecked()){
+            test.append("youtube");
+            recourses.add("youtube");
+        }
+        if(checkBox_piazza.isChecked()){
+            recourses.add("piazza");
+        }
+        if(checkBox_syllabus.isChecked()){
+            recourses.add("syllabys");
+        }
+        if(checkBox_stackOverflow.isChecked()){
+            recourses.add("stackOverflow");
+        }
+        if(checkBox_other.isChecked()){
+            recourses.add("other");
+        }
+        Toast.makeText(Survey.this, recourses.toString(), Toast.LENGTH_SHORT).show();
+
+        //TODO:  send assigment to DB.
     }
 }
 

@@ -123,14 +123,14 @@
                 android:orientation="horizontal">
 
                 <CheckBox
-                    android:id="@+id/checkBox3"
+                    android:id="@+id/checkBox_youtube"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Youtube" />
 
                 <CheckBox
-                    android:id="@+id/checkBox2"
+                    android:id="@+id/checkBox_lecture"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -143,14 +143,14 @@
                 android:orientation="horizontal">
 
                 <CheckBox
-                    android:id="@+id/checkBox5"
+                    android:id="@+id/checkBox_piazza"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Piazza" />
 
                 <CheckBox
-                    android:id="@+id/checkBox4"
+                    android:id="@+id/checkBox_stack"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -163,14 +163,14 @@
                 android:orientation="horizontal">
 
                 <CheckBox
-                    android:id="@+id/checkBox7"
+                    android:id="@+id/checkBox_syllabus"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Syllabus" />
 
                 <CheckBox
-                    android:id="@+id/checkBox6"
+                    android:id="@+id/checkBox_other"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -186,13 +186,8 @@
                     android:id="@+id/sendButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Button" />
-
-                <Button
-                    android:id="@+id/button13"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Button" />
+                    android:onClick="completeSurvey"
+                    android:text="Complete survey" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

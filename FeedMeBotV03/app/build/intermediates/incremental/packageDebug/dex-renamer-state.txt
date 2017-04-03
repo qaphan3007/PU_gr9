@@ -1,0 +1,7 @@
+#Mon Mar 13 13:04:57 CET 2017
+base.0=/Users/Sterri/Documents/PU/PU_gr9/FeedMeBotV03/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_d65bfd969d94f42a4fea5c809ea7a112c3bad808
+renamed.1=classes2.dex
+renamed.0=classes.dex
+file.1=/Users/Sterri/Documents/PU/PU_gr9/FeedMeBotV03/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_7ca08756638425445b1c0171e310745d88f32e73/classes.dex
+base.1=/Users/Sterri/Documents/PU/PU_gr9/FeedMeBotV03/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_7ca08756638425445b1c0171e310745d88f32e73
+file.0=/Users/Sterri/Documents/PU/PU_gr9/FeedMeBotV03/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_d65bfd969d94f42a4fea5c809ea7a112c3bad808/classes.dex

@@ -117,26 +117,25 @@ public class Statistics extends AppCompatActivity {
                     dataDict.put(index,0);
                 }
             }
-            /*
-            // Datapoint (x,y): x is the hour, y is the antall studenter som har valg det
-
-            BarGraphSeries<DataPoint> series = new BarGraphSeries<>(new DataPoint[] {
-                    new DataPoint(0, dataDict.get(0)),
-                    new DataPoint(1, dataDict.get(1)),
-                    new DataPoint(2, dataDict.get(2)),
-                    new DataPoint(3, dataDict.get(3)),
-                    new DataPoint(4, dataDict.get(4)),
-                    new DataPoint(5, dataDict.get(5))
-            }); */
-
-            BarGraphSeries<DataPoint> series = new BarGraphSeries<>(new DataPoint[] {
-                    new DataPoint(0, 10),
-                    new DataPoint(1, 5),
-                    new DataPoint(2, 15),
-                    new DataPoint(3, 24),
-                    new DataPoint(4, 39),
-                    new DataPoint(5, 2)
-            });
+            BarGraphSeries<DataPoint> series;
+            if (CourseOverview.assignment.getAssignmentNr().equals("1")) {
+                 series= new BarGraphSeries<>(new DataPoint[] {
+                        new DataPoint(0, 20),
+                        new DataPoint(1, 15),
+                        new DataPoint(2, 44),
+                        new DataPoint(3, 32),
+                        new DataPoint(4, 19)
+                });
+            }else {
+                series = new BarGraphSeries<>(new DataPoint[] {
+                        new DataPoint(0, dataDict.get(0)),
+                        new DataPoint(1, dataDict.get(1)),
+                        new DataPoint(2, dataDict.get(2)),
+                        new DataPoint(3, dataDict.get(3)),
+                        new DataPoint(4, dataDict.get(4)),
+                        new DataPoint(5, dataDict.get(5))
+                });
+            }
 
             assignmentTime.addSeries(series);
             series.setSpacing(30);   // Set spacing inbetween the x-entries as 50% of its width
