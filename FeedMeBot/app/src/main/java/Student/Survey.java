@@ -173,11 +173,13 @@ public class Survey extends AppCompatActivity {
         for (String j : resources){
             tracker.add(resources.get(resources.indexOf(j)));
         }
-        assignment.setResources(tracker);
+        //assignment.setResources(tracker);
 
         //assignment.setResources(resources);
         Toast.makeText(Survey.this,  tracker.get(1) + "", Toast.LENGTH_SHORT).show();
          //Toast.makeText(Survey.this,  assignment.getResources().get(2)+ "", Toast.LENGTH_SHORT).show();
+
+
 
         //for(String i : recourses) {
          //   assignment.setResources(i);
