@@ -169,3 +169,8 @@ public class AssignmentOverview extends AppCompatActivity {
         return sortedMap;
     }
 }
+//TODO: add button to se past surveys in this course.
+
+//TODO: in new class PastAssignment, show listview of answered assignments. (Litt likt show i courseOverview)
+
+//TODO: if click on assignment, show results.

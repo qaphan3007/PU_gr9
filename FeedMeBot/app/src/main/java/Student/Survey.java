@@ -2,6 +2,7 @@ package Student;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -11,15 +12,26 @@ import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.quynh.feedmebot.CourseOverview;
 import com.quynh.feedmebot.R;
 
 import java.util.ArrayList;
 
 import NonActivities.Assignment;
+import NonActivities.User;
 
 // Survey class is a common class with questions for all assignments in all subjects
 public class Survey extends AppCompatActivity {
     final String TAG = "test1233";
+
+
+    //TODO: Må hente ut hvilket fag vi jobber med, hvilken øving og email til bruker.
+    // en survey består av : assignmentNr, CourseKey, difficulty, feedback, rescources, og studmail.
+    // mangler CourseKey, studmail. Kanskje lage getters i respektive klasser?
+
+    // to get email : LogIn.currentUser.getEmail();
+
+
 
     // Initialize needed items
     TextView textViewTest;
@@ -30,13 +42,13 @@ public class Survey extends AppCompatActivity {
     Button sendButton;
     CheckBox checkBox_youtube, checkBox_piazza, checkBox_lectures, checkBox_syllabus, checkBox_other,checkBox_stackOverflow;
     Assignment assignment;
+
     private DatabaseReference mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_survey) ;
-
 
         final Assignment assignment = new Assignment();
         checkBox_lectures = (CheckBox) (findViewById(R.id.checkBox_lecture));
@@ -134,30 +146,51 @@ public class Survey extends AppCompatActivity {
     }
     public void completeSurvey(){
 
+        ArrayList <String> resources = new ArrayList<>();
         //String [] recourses = new String[5];
-        ArrayList<String> recourses = new ArrayList<>();
         StringBuffer test = new StringBuffer();
         if( checkBox_lectures.isChecked()){
-            recourses.add("lectures");
+            resources.add("lectures");
             test.append("lectures");
         }
         if(checkBox_youtube.isChecked()){
             test.append("youtube");
-            recourses.add("youtube");
+            resources.add("youtube");
         }
         if(checkBox_piazza.isChecked()){
-            recourses.add("piazza");
+            resources.add("piazza");
         }
         if(checkBox_syllabus.isChecked()){
-            recourses.add("syllabys");
+            resources.add("syllabys");
         }
         if(checkBox_stackOverflow.isChecked()){
-            recourses.add("stackOverflow");
+            resources.add("stackOverflow");
         }
         if(checkBox_other.isChecked()){
-            recourses.add("other");
+            resources.add("other");
         }
-        Toast.makeText(Survey.this, recourses.toString(), Toast.LENGTH_SHORT).show();
+        ArrayList<String> tracker = new ArrayList<>();
+        for (String j : resources){
+            tracker.add(resources.get(resources.indexOf(j)));
+        }
+        assignment.setResources(tracker);
+
+        //assignment.setResources(resources);
+        Toast.makeText(Survey.this,  tracker.get(1) + "", Toast.LENGTH_SHORT).show();
+         //Toast.makeText(Survey.this,  assignment.getResources().get(2)+ "", Toast.LENGTH_SHORT).show();
+
+        //for(String i : recourses) {
+         //   assignment.setResources(i);
+       // }
+        //String [] asgn = recourses.split(",");
+        //for(int i = 0; i < asgn.length; i++){
+          //  assignment.setResources(asgn[i]);
+        //}
+       // Toast.makeText(Survey.this, asgn.length +"", Toast.LENGTH_SHORT).show();
+       // Toast.makeText(Survey.this, assignment.getResources().get(1).toString(), Toast.LENGTH_SHORT).show();
+
+
+
 
         //TODO:  send assigment to DB.
     }

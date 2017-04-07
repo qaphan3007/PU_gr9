@@ -234,7 +234,6 @@ public class Statistics extends AppCompatActivity {
             staticLabelsFormatter.setHorizontalLabels(available_resources);
             resourcesView.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
 
-
             // set manual x bounds to have nice steps
             resourcesView.getViewport().setMinX(0);
             resourcesView.getViewport().setMaxX(4);
