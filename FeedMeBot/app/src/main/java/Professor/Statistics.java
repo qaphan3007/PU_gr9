@@ -233,6 +233,11 @@ public class Statistics extends AppCompatActivity {
             StaticLabelsFormatter staticLabelsFormatter = new StaticLabelsFormatter(resourcesView);
             staticLabelsFormatter.setHorizontalLabels(available_resources);
             resourcesView.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
+            //resourcesView.getGridLabelRenderer().setVerticalAxisTitle("Number of students");
+
+            resourcesView.getGridLabelRenderer().setHorizontalAxisTitle("Resource used");
+            resourcesView.getGridLabelRenderer().setLabelHorizontalHeight(20);
+            //resourcesView.getGridLabelRenderer().setLabelVerticalWidth(20);
 
             // set manual x bounds to have nice steps
             resourcesView.getViewport().setMinX(0);

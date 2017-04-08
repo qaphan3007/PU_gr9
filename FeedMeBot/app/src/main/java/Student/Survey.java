@@ -143,7 +143,7 @@ public class Survey extends AppCompatActivity {
     }
     //Sends data to DB
     private void updateData(){
-        
+
 
     }
 
