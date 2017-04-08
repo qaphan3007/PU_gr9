@@ -41,7 +41,8 @@ public class Survey extends AppCompatActivity {
     SeekBar seekBarDifficultLevel;
     Button sendButton;
     CheckBox checkBox_youtube, checkBox_piazza, checkBox_lectures, checkBox_syllabus, checkBox_other,checkBox_stackOverflow;
-    Assignment assignment;
+    Assignment assignment = new Assignment();
+
 
     private DatabaseReference mDatabase;
 
@@ -50,7 +51,7 @@ public class Survey extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_survey) ;
 
-        final Assignment assignment = new Assignment();
+        //Assignment assignment = new Assignment();
         checkBox_lectures = (CheckBox) (findViewById(R.id.checkBox_lecture));
         checkBox_youtube = (CheckBox) findViewById(R.id.checkBox_youtube);
         checkBox_piazza = (CheckBox) findViewById(R.id.checkBox_piazza);
@@ -140,21 +141,18 @@ public class Survey extends AppCompatActivity {
 
 
     }
-
+    //Sends data to DB
     private void updateData(){
+        
 
     }
-    public void completeSurvey(){
 
+    public void completeSurvey(){
         ArrayList <String> resources = new ArrayList<>();
-        //String [] recourses = new String[5];
-        StringBuffer test = new StringBuffer();
         if( checkBox_lectures.isChecked()){
             resources.add("lectures");
-            test.append("lectures");
         }
         if(checkBox_youtube.isChecked()){
-            test.append("youtube");
             resources.add("youtube");
         }
         if(checkBox_piazza.isChecked()){
@@ -173,28 +171,18 @@ public class Survey extends AppCompatActivity {
         for (String j : resources){
             tracker.add(resources.get(resources.indexOf(j)));
         }
-        //assignment.setResources(tracker);
+        if(tracker.isEmpty()){
+            Toast.makeText(Survey.this, "No resources selected", Toast.LENGTH_SHORT).show();
+        } else {
+            assignment.setResources(tracker);
+        }
+        Toast.makeText(Survey.this,  assignment.getResources().get(1)+ "", Toast.LENGTH_SHORT).show();
 
-        //assignment.setResources(resources);
-        Toast.makeText(Survey.this,  tracker.get(1) + "", Toast.LENGTH_SHORT).show();
-         //Toast.makeText(Survey.this,  assignment.getResources().get(2)+ "", Toast.LENGTH_SHORT).show();
-
-
-
-        //for(String i : recourses) {
-         //   assignment.setResources(i);
-       // }
-        //String [] asgn = recourses.split(",");
-        //for(int i = 0; i < asgn.length; i++){
-          //  assignment.setResources(asgn[i]);
-        //}
-       // Toast.makeText(Survey.this, asgn.length +"", Toast.LENGTH_SHORT).show();
-       // Toast.makeText(Survey.this, assignment.getResources().get(1).toString(), Toast.LENGTH_SHORT).show();
+        updateData();
 
 
 
 
-        //TODO:  send assigment to DB.
     }
 }
 
