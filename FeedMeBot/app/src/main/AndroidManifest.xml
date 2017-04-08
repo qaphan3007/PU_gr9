@@ -26,6 +26,8 @@
         <activity android:name=".CourseOverview" />
         <activity android:name=".AssignmentOverview" />
         <activity android:name="Professor.Statistics" />
+        <activity android:name="Student.Predictor" />
+
 
     </application>
 

@@ -147,15 +147,11 @@ public class Statistics extends AppCompatActivity {
                         new DataPoint(3, 32),
                         new DataPoint(4, 19)
                 });
-            }else {
-                series = new BarGraphSeries<>(new DataPoint[] {
-                        new DataPoint(0, dataDict.get(0)),
-                        new DataPoint(1, dataDict.get(1)),
-                        new DataPoint(2, dataDict.get(2)),
-                        new DataPoint(3, dataDict.get(3)),
-                        new DataPoint(4, dataDict.get(4)),
-                        new DataPoint(5, dataDict.get(5))
-                });
+            } else {
+                DataPoint[] points = new DataPoint[dataDict.size()];
+                for (int i = 0; i < points.length; i++) {
+                    points[i] = new DataPoint(i,dataDict.get(i));
+                } series= new BarGraphSeries<>(points);
             }
 
             assignmentTime.addSeries(series);
@@ -179,11 +175,9 @@ public class Statistics extends AppCompatActivity {
             if (Objects.equals(survey_answers.get("courseKey"), CourseOverview.assignment.getCourseKey())) {
                 // resource_dict = {rdm_key = youtube, key2 = lecture}
                 HashMap<String, Object> resource_dict = (HashMap<String, Object>) survey_answers.get("resources");
-                Log.d(TAG,"resource_dict: "+resource_dict.toString());
 
                 for (Object each_resource : resource_dict.values()) {   // resource_values = ["youtube", "lectures",..}
                     String resource = (String) each_resource;    // resource is for example "youtube"
-                    Log.d(TAG,"current resources: "+ resources.toString());
 
                     if (resources.containsKey(resource)) {
                         Integer old_count = resources.get(resource);
@@ -205,26 +199,30 @@ public class Statistics extends AppCompatActivity {
             // String[] available_resources = {"Videos","Lectures", "Forums", "Others"};
 
             for (int index = 0;index<available_resources.length;index++){
-                if (!(resources.containsKey(available_resources[index]))){  // If there isnt an entry, make one
-                    resources.put(available_resources[index],0);   // Ex: available_resources[0] = "Youtube"
+                if (!(resources.containsKey(available_resources[index].toLowerCase()))){  // If there isnt an entry, make one
+                    resources.put(available_resources[index].toLowerCase(),0);   // Ex: available_resources[0] = "Youtube"
                 }
             }
-            Log.d(TAG,"final resources: "+ resources.toString());
-
+            Log.d(TAG,"final resources dict: "+ resources.toString());
 
 
             // Generate the series to display through a bar graph.
             BarGraphSeries<DataPoint> series;
-            // Google "android studio graph with string" (labels)
 
-
-            series = new BarGraphSeries<>(new DataPoint[]{
-                    new DataPoint(0, 20),
-                    new DataPoint(1, 15),
-                    new DataPoint(2, 44),
-                    new DataPoint(3, 32),
-                    new DataPoint(4, 19),
-            });
+            if (CourseOverview.assignment.getAssignmentNr().equals("1")) {  // Insert fake test values when assignNr = 1<
+                series = new BarGraphSeries<>(new DataPoint[]{
+                        new DataPoint(0, 20),
+                        new DataPoint(1, 15),
+                        new DataPoint(2, 44),
+                        new DataPoint(3, 32),
+                        new DataPoint(4, 19),
+                });
+            } else {
+                DataPoint[] points = new DataPoint[resources.size()];
+                for (int i = 0; i < points.length; i++) {
+                    points[i] = new DataPoint(i,resources.get(available_resources[i].toLowerCase()));
+                } series= new BarGraphSeries<>(points);
+            }
 
             resourcesView.addSeries(series);
             series.setSpacing(30);   // Set spacing inbetween the x-entries as 30% of its width
