@@ -149,6 +149,7 @@ public class Survey extends AppCompatActivity {
 
                 //updateData();
                 // Then sends the user back to the previous page
+                Toast.makeText(Survey.this,"Sucsessfully answered" + CourseOverview.assignment.getAssignmentName(), Toast.LENGTH_SHORT).show();
                 goToProfile(view);
             }
         });
@@ -205,7 +206,7 @@ public class Survey extends AppCompatActivity {
         } else {
             assignment.setResources(tracker);
         }
-        Toast.makeText(Survey.this,  assignment.getResources().get(1)+ "", Toast.LENGTH_SHORT).show();
+
 
 
 
