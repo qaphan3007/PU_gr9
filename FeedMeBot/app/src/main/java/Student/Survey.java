@@ -44,6 +44,7 @@ public class Survey extends AppCompatActivity {
     Assignment assignment = new Assignment();
 
 
+
     private DatabaseReference mDatabase;
 
     @Override
