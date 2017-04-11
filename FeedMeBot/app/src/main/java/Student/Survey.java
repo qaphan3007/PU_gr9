@@ -1,5 +1,6 @@
 package Student;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
@@ -12,10 +13,13 @@ import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.quynh.feedmebot.AssignmentOverview;
 import com.quynh.feedmebot.CourseOverview;
+import com.quynh.feedmebot.Profile;
 import com.quynh.feedmebot.R;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import NonActivities.Assignment;
 import NonActivities.User;
@@ -47,6 +51,7 @@ public class Survey extends AppCompatActivity {
 
     private DatabaseReference mDatabase;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +64,10 @@ public class Survey extends AppCompatActivity {
         checkBox_syllabus = (CheckBox) findViewById(R.id.checkBox_syllabus);
         checkBox_other = (CheckBox) findViewById(R.id.checkBox_other);
         checkBox_stackOverflow = (CheckBox) findViewById(R.id.checkBox_stack);
+
+
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+
 
 
 
@@ -127,23 +136,42 @@ public class Survey extends AppCompatActivity {
         });
 
 
-        mDatabase = FirebaseDatabase.getInstance().getReference();
+
+
 
        sendButton = (Button) findViewById(R.id.sendButton);
         sendButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
+                completeSurvey(); //Gets resourcesfrom checkboxes
+                updateData(); //Sends assignmentObject to DB.
                 // On click sends all the data from assignment to the database
-                completeSurvey();
-                updateData();
+
+                //updateData();
                 // Then sends the user back to the previous page
+                goToProfile(view);
             }
         });
 
 
     }
+
+    private void goToProfile(View view){
+        Intent intent = new Intent(this, Profile.class);
+        startActivity(intent);
+    }
     //Sends data to DB
     private void updateData(){
+        HashMap<String, String> assignmentMap = new HashMap<String, String>();
+        assignmentMap.put("AssignmentName", CourseOverview.assignment.getAssignmentName());
+        assignmentMap.put("CourseKey", CourseOverview.assignment.getCourseKey());
+        assignmentMap.put("difficulty", assignment.getAssignmentLevel());
+        assignmentMap.put("hours", assignment.getAssignmentHours()+"");
+        assignmentMap.put("email", LogIn.currentUser.getEmail());
+        String joined = TextUtils.join(",", assignment.getResources());
+        assignmentMap.put("resources", joined);
+        DatabaseReference tester= mDatabase.child("Survey").push();
+        tester.setValue(assignmentMap);
 
 
     }
@@ -179,7 +207,6 @@ public class Survey extends AppCompatActivity {
         }
         Toast.makeText(Survey.this,  assignment.getResources().get(1)+ "", Toast.LENGTH_SHORT).show();
 
-        updateData();
 
 
 
