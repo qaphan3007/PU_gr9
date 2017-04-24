@@ -21,6 +21,7 @@ import com.jjoe64.graphview.series.DataPoint;
 import com.quynh.feedmebot.CourseOverview;
 import com.quynh.feedmebot.R;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -174,9 +175,12 @@ public class Statistics extends AppCompatActivity {
             // Read each objects and compare courseKey. If this is correct, read thru it.
             if (Objects.equals(survey_answers.get("courseKey"), CourseOverview.assignment.getCourseKey())) {
                 // resource_dict = {rdm_key = youtube, key2 = lecture}
-                HashMap<String, Object> resource_dict = (HashMap<String, Object>) survey_answers.get("resources");
+                String resourceFromDB = (String) survey_answers.get("resources");
+                //resourceFromDB.split(",");
+              //  ArrayList<String> resourceList = new ArrayList<>();
+                String[] resource_list = resourceFromDB.split(",");
 
-                for (Object each_resource : resource_dict.values()) {   // resource_values = ["youtube", "lectures",..}
+                for (String each_resource : resource_list) {   // resource_values = ["youtube", "lectures",..}
                     String resource = (String) each_resource;    // resource is for example "youtube"
 
                     if (resources.containsKey(resource)) {
@@ -188,22 +192,31 @@ public class Statistics extends AppCompatActivity {
                 }
             }
         }
+        String[] available_resources = {"Videos", "Peers", "Lectures", "Forums", "Others"};
 
         // By now our resources dict should look like {"Youtube" = 5, "Lectures" = 50, etc.}
-        if (resources.size() > 0) {      // If resources dict is not empty
+        if (!resources.isEmpty()) {      // If resources dict is not empty
             // We will now add the items in resources dict to our bargraph series to showcase them.
 
             // Make sure that null-verdier are made into a (resource=0answers) entry
             // iterate through a list of all available resources to put resource=0studsUsed
-            String[] available_resources = {"Videos","Peers", "Lectures","Forums", "Others"};
             // String[] available_resources = {"Videos","Lectures", "Forums", "Others"};
 
-            for (int index = 0;index<available_resources.length;index++){
-                if (!(resources.containsKey(available_resources[index].toLowerCase()))){  // If there isnt an entry, make one
-                    resources.put(available_resources[index].toLowerCase(),0);   // Ex: available_resources[0] = "Youtube"
+            for (int index = 0; index < available_resources.length; index++) {
+                if (!(resources.containsKey(available_resources[index].toLowerCase()))) {  // If there isnt an entry, make one
+                    resources.put(available_resources[index].toLowerCase(), 0);   // Ex: available_resources[0] = "Youtube"
                 }
             }
-            Log.d(TAG,"final resources dict: "+ resources.toString());
+            Log.d(TAG, "final resources dict: " + resources.toString());
+        } else {
+
+            //Puts values to zero, if resources is empty
+            for (int i = 0; i <5; i++){
+                resources.put(available_resources[i].toLowerCase(), 0);
+            }
+
+        }
+
 
 
             // Generate the series to display through a bar graph.
@@ -245,5 +258,6 @@ public class Statistics extends AppCompatActivity {
             resourcesView.getViewport().setScalable(true); // enables horizontal zooming and scrolling
 
         }
-    }
+
+
 }

@@ -127,7 +127,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Youtube" />
+                    android:text="Videos" />
 
                 <CheckBox
                     android:id="@+id/checkBox_lecture"
@@ -147,27 +147,20 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Piazza" />
+                    android:text="Forums" />
 
                 <CheckBox
                     android:id="@+id/checkBox_stack"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Stack overflow" />
+                    android:text="Peers" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
-
-                <CheckBox
-                    android:id="@+id/checkBox_syllabus"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Syllabus" />
 
                 <CheckBox
                     android:id="@+id/checkBox_other"

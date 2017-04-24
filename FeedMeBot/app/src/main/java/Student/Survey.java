@@ -61,7 +61,7 @@ public class Survey extends AppCompatActivity {
         checkBox_lectures = (CheckBox) (findViewById(R.id.checkBox_lecture));
         checkBox_youtube = (CheckBox) findViewById(R.id.checkBox_youtube);
         checkBox_piazza = (CheckBox) findViewById(R.id.checkBox_piazza);
-        checkBox_syllabus = (CheckBox) findViewById(R.id.checkBox_syllabus);
+        //checkBox_syllabus = (CheckBox) findViewById(R.id.checkBox_syllabus);
         checkBox_other = (CheckBox) findViewById(R.id.checkBox_other);
         checkBox_stackOverflow = (CheckBox) findViewById(R.id.checkBox_stack);
 
@@ -183,16 +183,13 @@ public class Survey extends AppCompatActivity {
             resources.add("lectures");
         }
         if(checkBox_youtube.isChecked()){
-            resources.add("youtube");
+            resources.add("videos");
         }
         if(checkBox_piazza.isChecked()){
-            resources.add("piazza");
-        }
-        if(checkBox_syllabus.isChecked()){
-            resources.add("syllabys");
+            resources.add("forums");
         }
         if(checkBox_stackOverflow.isChecked()){
-            resources.add("stackOverflow");
+            resources.add("peers");
         }
         if(checkBox_other.isChecked()){
             resources.add("other");
