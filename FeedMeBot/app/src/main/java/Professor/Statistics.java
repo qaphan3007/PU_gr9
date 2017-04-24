@@ -100,6 +100,7 @@ public class Statistics extends AppCompatActivity {
         });
     }
 
+
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void showAssignmentTime(DataSnapshot dataSnapshot) {
         HashMap<String, Object> studentSubjects = (HashMap<String, Object>) dataSnapshot.getValue();
@@ -156,7 +157,11 @@ public class Statistics extends AppCompatActivity {
             }
 
             assignmentTime.addSeries(series);
-            series.setSpacing(30);   // Set spacing inbetween the x-entries as 50% of its width
+            assignmentTime.setTitle("Number of students ordered by hours spent");
+           // assignmentTime.getGridLabelRenderer().setVerticalAxisTitle("test");
+            assignmentTime.getGridLabelRenderer().setHorizontalAxisTitle("hours spent");
+            //assignmentTime.getGridLabelRenderer().setLabelVerticalWidth(2);
+            series.setSpacing(50);   // Set spacing inbetween the x-entries as 50% of its width
 
         }
     }
@@ -248,6 +253,7 @@ public class Statistics extends AppCompatActivity {
 
             resourcesView.getGridLabelRenderer().setHorizontalAxisTitle("Resource used");
             resourcesView.getGridLabelRenderer().setLabelHorizontalHeight(20);
+            resourcesView.setTitle("Number of students who used the resource");
             //resourcesView.getGridLabelRenderer().setLabelVerticalWidth(20);
 
             // set manual x bounds to have nice steps
