@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.quynh.feedmebot">
 
-    <uses-sdk tools:overrideLibrary="android.support.v18.leanback"/>
+    <uses-sdk tools:overrideLibrary="android.support.v18.leanback" />
 
     <application
         android:allowBackup="true"
@@ -27,8 +27,7 @@
         <activity android:name=".AssignmentOverview" />
         <activity android:name="Professor.Statistics" />
         <activity android:name="Student.Predictor" />
-
-
+        <activity android:name=".AddCourse"></activity>
     </application>
 
 </manifest>

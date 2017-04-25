@@ -62,6 +62,7 @@ public class CourseOverview extends AppCompatActivity {
 
     private Button assignmentButton;
     private Button gradeButton;
+    private Button addCourseButton;
 
     private String clickedCourse;
 
@@ -80,6 +81,7 @@ public class CourseOverview extends AppCompatActivity {
 
         mListView = (ListView) findViewById(R.id.listview);
 
+        addCourseButton = (Button) findViewById(R.id.addCourseButton);
         assignmentButton = (Button) findViewById(R.id.assignmentButton);
         gradeButton = (Button) findViewById(R.id.gradeButton);
         gradeButton.setVisibility(View.INVISIBLE);
@@ -200,5 +202,10 @@ public class CourseOverview extends AppCompatActivity {
 
     private void toastMessage(String message){
         Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
+    }
+
+    public void goToAddCourse(View view) {
+        Intent intent = new Intent(this, AddCourse.class);
+        startActivity(intent);
     }
 }

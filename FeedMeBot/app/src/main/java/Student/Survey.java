@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.FirebaseDatabase;
 import com.quynh.feedmebot.AssignmentOverview;
 import com.quynh.feedmebot.CourseOverview;
@@ -20,6 +22,7 @@ import com.quynh.feedmebot.R;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Objects;
 
 import NonActivities.Assignment;
 import NonActivities.User;
@@ -67,6 +70,7 @@ public class Survey extends AppCompatActivity {
 
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
+
 
 
 
@@ -164,6 +168,7 @@ public class Survey extends AppCompatActivity {
     //Sends data to DB
     private void updateData(){
         HashMap<String, String> assignmentMap = new HashMap<String, String>();
+
         assignmentMap.put("AssignmentName", CourseOverview.assignment.getAssignmentName());
         assignmentMap.put("CourseKey", CourseOverview.assignment.getCourseKey());
         assignmentMap.put("difficulty", assignment.getAssignmentLevel());
@@ -182,7 +187,7 @@ public class Survey extends AppCompatActivity {
         if( checkBox_lectures.isChecked()){
             resources.add("lectures");
         }
-        if(checkBox_youtube.isChecked()){
+        if(checkBox_youtube.isChecked()){ // must change name
             resources.add("videos");
         }
         if(checkBox_piazza.isChecked()){
@@ -208,6 +213,17 @@ public class Survey extends AppCompatActivity {
 
 
 
+
+    }
+    private boolean hasAnswered(DataSnapshot dataSnapshot){
+       // HashMap<String, Object> surveys =
+     //  for (Object tracker : mDatabase.child("Survey").get){
+
+      // }
+        return false;
+    }
+
+    private void updateDB(){
 
     }
 }

@@ -4,11 +4,11 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.quynh.feedmebot.CourseOverview">
+    tools:context="com.quynh.feedmebot.AddCourse">
 
 
     <TextView
-        android:text = "Your Courses"
+        android:text = "Avaliable Courses"
         android:textAlignment="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -16,7 +16,7 @@
         />
 
     <TextView
-        android:text = "Choose a course you would like more info on"
+        android:text = "Choose a course you want to add"
         android:textAlignment="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -32,27 +32,11 @@
     </ListView>
 
     <Button
-        android:id="@+id/gradeButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        android:text="Grade Prediction" />
-
-    <Button
-        android:id="@+id/assignmentButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        android:text="See Assignments from Chosen Course" />
-
-    <Button
         android:id="@+id/addCourseButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
-        android:text="Add other subject"
-        android:onClick="goToAddCourse"/>
-
+        android:text="Add course" />
 
 
 </LinearLayout>
