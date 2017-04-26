@@ -93,9 +93,7 @@ public class Survey extends AppCompatActivity {
                 if (progress == 0) {
                     textViewHour.setText("Jeg kokte øvingen......"); // prints how many hours.
                     assignment.setAssignmentHours(progress); // Sets the the hours spent to the assignment object
-                    if(assignment.getAssignmentHours() == 0) {
-                        Toast.makeText(Survey.this, "Det funker!!!!! Og vi er awesome", Toast.LENGTH_SHORT).show();
-                    }
+
                 } else {
                     textViewHour.setText(progress + " hours"); // prints how many hours.
                     assignment.setAssignmentHours(progress); // Sets the the hours spent to the assignment object

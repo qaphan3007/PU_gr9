@@ -44,6 +44,7 @@ public class AddCourse extends AppCompatActivity {
     private ArrayAdapter<String> adapter;
 
     private Button addCourseButton;
+    private Button returnToProfile;
     private String clickedCourse;
     private String userID;
 
@@ -66,6 +67,8 @@ public class AddCourse extends AppCompatActivity {
         myRef = mFirebaseDatabase.getReference();
         clickedCourse = "";
         addCourseButton = (Button) findViewById(R.id.addCourseButton);
+        returnToProfile = (Button) findViewById(R.id.backToProfile);
+
         current_datas_snapshot = null;
         //assignment = CourseOverview.assignment;
 
@@ -84,9 +87,15 @@ public class AddCourse extends AppCompatActivity {
             }
         });
 
+        returnToProfile.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Intent profile = new Intent(getApplicationContext(), Profile.class);
+                startActivity(profile);  // Move view to ProfLogIn
+            }
+        });
 
-
-        // When the user presses on an item in the listview, save the courseKey as a String
+                // When the user presses on an item in the listview, save the courseKey as a String
         mListView.setAdapter(adapter);
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
