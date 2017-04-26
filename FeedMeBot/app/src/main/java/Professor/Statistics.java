@@ -114,17 +114,19 @@ public class Statistics extends AppCompatActivity {
             HashMap<String, Object> infoMap = (HashMap<String, Object>) infoMaps;  // infoMap = {coursekey = TDT4145, timedict={dict}}
             // If courseKey is the correct chosen courseKey
             if (Objects.equals(infoMap.get("courseKey"), CourseOverview.assignment.getCourseKey())) {
-                HashMap<String, Object> timeDict = (HashMap<String, Object>) infoMap.get("assignmentTime"); // timedict={assNr=hour}
-                for (Object assignmentNr : timeDict.keySet()) {    // Iterate thru the "assignmentTime" table's keys
-                    String assignString = (String) assignmentNr;   // "assignString" = "assn 1"
-                    String assignNr = assignString.split(" ")[1];  // get only the number part out
-                    if (assignNr.equals(CourseOverview.assignment.getAssignmentNr())) {  // If we found the correct assignNr
-                        Integer hour = Integer.valueOf(timeDict.get(assignString).toString());   // Get the hour
-                        if (dataDict.containsKey(hour)) {
-                            Integer old_count = dataDict.get(hour);
-                            dataDict.put(hour, old_count + 1);   // if there is already an entry frm before, plus the count
-                        } else {
-                            dataDict.put(hour, 1);  // else make a new entry with stud_count = 1
+                if (infoMap.containsKey("assignmentTime")) {
+                    HashMap<String, Object> timeDict = (HashMap<String, Object>) infoMap.get("assignmentTime"); // timedict={assNr=hour}
+                    for (Object assignmentNr : timeDict.keySet()) {    // Iterate thru the "assignmentTime" table's keys
+                        String assignString = (String) assignmentNr;   // "assignString" = "assn 1"
+                        String assignNr = assignString.split(" ")[1];  // get only the number part out
+                        if (assignNr.equals(CourseOverview.assignment.getAssignmentNr())) {  // If we found the correct assignNr
+                            Integer hour = Integer.valueOf(timeDict.get(assignString).toString());   // Get the hour
+                            if (dataDict.containsKey(hour)) {
+                                Integer old_count = dataDict.get(hour);
+                                dataDict.put(hour, old_count + 1);   // if there is already an entry frm before, plus the count
+                            } else {
+                                dataDict.put(hour, 1);  // else make a new entry with stud_count = 1
+                            }
                         }
                     }
                 }
@@ -134,11 +136,16 @@ public class Statistics extends AppCompatActivity {
             // Add the items in dataDict to our bargraph series now
 
             // Make sure that null-verdier are made into a (hour=0 answers) entry
-            for (int index = 0;index<6;index++){
-                if (!(dataDict.containsKey(index))){  // If there isnt an entry, make one
-                    dataDict.put(index,0);
+            for (int index = 0; index < 6; index++) {
+                if (!(dataDict.containsKey(index))) {  // If there isnt an entry, make one
+                    dataDict.put(index, 0);
                 }
             }
+        } else {
+            for (int index = 0; index < 6; index++) {
+                dataDict.put(index, 0);
+            }
+        }
             BarGraphSeries<DataPoint> series;
 
             if (CourseOverview.assignment.getAssignmentNr().equals("1")) {  // Insert fake test values when assignNr = 1<
@@ -164,7 +171,8 @@ public class Statistics extends AppCompatActivity {
             series.setSpacing(50);   // Set spacing inbetween the x-entries as 50% of its width
 
         }
-    }
+
+
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void showResourcesUsed(DataSnapshot dataSnapshot) {
