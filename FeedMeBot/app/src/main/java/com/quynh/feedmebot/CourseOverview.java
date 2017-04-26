@@ -126,6 +126,7 @@ public class CourseOverview extends AppCompatActivity {
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
                 String var = parent.getItemAtPosition(position) + ""; // Sets var equal to clicked listview
                 clickedCourse = var.trim();
                 assignment.setCourseKey(clickedCourse);   // Save the courseKey to a global var
