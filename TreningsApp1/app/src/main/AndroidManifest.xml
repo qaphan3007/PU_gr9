@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.qpb96.treningsapp1">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".HomeMedKonk" />
+        <activity android:name=".Profile" />
+        <activity android:name=".Konkurranse" />
+        <activity android:name=".Bemerkelser" />
+        <activity android:name=".FinnVenner" />
+        <activity android:name=".Per" />
+        <activity android:name=".GulBemerkelse" />
+        <activity android:name=".Lopet" />
+        <activity android:name=".NTNTU" />
+        <activity android:name=".NTNU1" />
+        <activity android:name=".KartPluss" />
+        <activity android:name=".Medal1" />
+        <activity android:name=".Per1" />
+        <activity android:name=".Anne" />
+        <activity android:name=".Josefine" />
+        <activity android:name=".Espen" />
+        <activity android:name=".Anne1" />
+        <activity android:name=".Josfine1"></activity>
+    </application>
+
+</manifest>

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.qpb96.treningsapp1.Josefine">
+    <View
+        android:layout_width="0dp"
+        android:layout_height="3dp"
+        android:background="@android:color/black"
+        android:id="@+id/view"
+        tools:layout_editor_absoluteX="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="82dp" />
+
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="3dp"
+        android:background="@android:color/black"
+        android:id="@+id/view2"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="99dp"
+        android:layout_marginLeft="0dp"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView32"
+        android:layout_width="70dp"
+        android:layout_height="69dp"
+        app:srcCompat="@drawable/home"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView33"
+        android:layout_width="61dp"
+        android:layout_height="74dp"
+        app:srcCompat="@drawable/userprofile"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="3dp"
+        android:layout_marginLeft="110dp"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView34"
+        android:layout_width="71dp"
+        android:layout_height="77dp"
+        app:srcCompat="@drawable/trophy"
+        android:layout_marginRight="104dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="5dp" />
+
+    <ImageView
+        android:id="@+id/imageView35"
+        android:layout_width="79dp"
+        android:layout_height="65dp"
+        app:srcCompat="@drawable/raceflag"
+        android:layout_marginRight="16dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="8dp" />
+
+    <ImageView
+        android:id="@+id/imageView36"
+        android:layout_width="83dp"
+        android:layout_height="86dp"
+        app:srcCompat="@drawable/userprofile"
+        android:layout_marginLeft="138dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="4dp" />
+
+    <TextView
+        android:id="@+id/textView41"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Josefine"
+        android:textAppearance="@android:style/TextAppearance.Large"
+        android:layout_marginRight="162dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="112dp" />
+
+    <TextView
+        android:id="@+id/textView42"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bemerkelser"
+        android:textAppearance="@android:style/TextAppearance.Medium"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="146dp"
+        android:layout_marginLeft="16dp"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <TextView
+        android:id="@+id/textView43"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Aktive konkurranser"
+        android:textAppearance="@android:style/TextAppearance.Medium"
+        android:layout_marginLeft="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="203dp" />
+
+    <TextView
+        android:id="@+id/textView44"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Venner"
+        android:textAppearance="@android:style/TextAppearance.Medium"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="313dp"
+        android:layout_marginLeft="16dp"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <TextView
+        android:id="@+id/textView45"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ingen aktive konkurranser"
+        android:textStyle="italic"
+        android:layout_marginRight="213dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="247dp" />
+
+    <TextView
+        android:id="@+id/textView46"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Simen"
+        android:layout_marginLeft="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="346dp" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Legg til"
+        android:layout_marginRight="16dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="112dp" />
+</android.support.constraint.ConstraintLayout>

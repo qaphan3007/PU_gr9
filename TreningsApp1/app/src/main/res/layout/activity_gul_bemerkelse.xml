@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.qpb96.treningsapp1.GulBemerkelse">
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="3dp"
+        android:background="@android:color/black"
+        android:id="@+id/view"
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintBottom_creator="1"
+        app:layout_constraintBottom_toTopOf="@+id/imageView17"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView17" />
+
+    <ImageView
+        android:id="@+id/imageView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/award"
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintBottom_creator="1"
+        app:layout_constraintBottom_toTopOf="@+id/imageView14"
+        android:layout_marginTop="79dp"
+        tools:layout_constraintLeft_creator="1"
+        android:layout_marginBottom="76dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Gratulerer du har gått 1000 skritt"
+        android:textAppearance="@android:style/TextAppearance.Large"
+        tools:layout_constraintBottom_creator="1"
+        app:layout_constraintBottom_toTopOf="@+id/imageView13"
+        android:layout_marginStart="31dp"
+        tools:layout_constraintLeft_creator="1"
+        android:layout_marginBottom="12dp"
+        app:layout_constraintLeft_toLeftOf="@+id/imageView13" />
+
+    <ImageView
+        android:id="@+id/imageView14"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:srcCompat="@drawable/home"
+        app:layout_constraintRight_toLeftOf="@+id/imageView15"
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintBottom_creator="1"
+        android:layout_marginStart="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView17"
+        android:layout_marginEnd="9dp"
+        android:layout_marginTop="4dp"
+        tools:layout_constraintLeft_creator="1"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/view" />
+
+    <ImageView
+        android:id="@+id/imageView15"
+        android:layout_width="79dp"
+        android:layout_height="73dp"
+        app:srcCompat="@drawable/userprofile"
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintBottom_creator="1"
+        android:layout_marginStart="107dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginEnd="89dp"
+        app:layout_constraintRight_toRightOf="@+id/imageView16"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toLeftOf="@+id/view"
+        app:layout_constraintTop_toTopOf="@+id/view"
+        tools:layout_editor_absoluteY="439dp" />
+
+    <ImageView
+        android:id="@+id/imageView16"
+        android:layout_width="81dp"
+        android:layout_height="88dp"
+        app:srcCompat="@drawable/trophy"
+        tools:layout_constraintRight_creator="1"
+        android:layout_marginEnd="101dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginRight="98dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="-5dp" />
+
+    <ImageView
+        android:id="@+id/imageView17"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:srcCompat="@drawable/raceflag"
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintBottom_creator="1"
+        android:layout_marginStart="11dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="3dp"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintTop_toTopOf="@+id/imageView16"
+        app:layout_constraintLeft_toRightOf="@+id/imageView16" />
+</android.support.constraint.ConstraintLayout>

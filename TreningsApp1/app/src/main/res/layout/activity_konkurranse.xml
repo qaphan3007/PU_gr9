@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.qpb96.treningsapp1.Konkurranse"
+    tools:layout_editor_absoluteY="81dp"
+    tools:layout_editor_absoluteX="0dp">
+
+    <View
+        android:layout_width="406dp"
+        android:layout_height="5dp"
+        android:background="@android:color/black"
+        android:id="@+id/view"
+        tools:layout_editor_absoluteX="-9dp"
+        app:layout_constraintTop_toTopOf="@+id/imageView18"
+        android:layout_marginTop="99dp" />
+
+    <View
+        android:layout_width="406dp"
+        android:layout_height="5dp"
+        android:background="@android:color/black"
+        android:id="@+id/view1"
+        tools:layout_editor_absoluteX="-9dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="80dp" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Konkurranse"
+        android:layout_marginRight="163dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="86dp"
+        android:layout_marginEnd="163dp" />
+
+    <ImageView
+        android:id="@+id/imageView18"
+        android:layout_width="80dp"
+        android:layout_height="82dp"
+        app:srcCompat="@drawable/raceflag"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="4dp"
+        android:layout_marginRight="161dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginEnd="161dp" />
+
+    <ImageView
+        android:id="@+id/imageView19"
+        android:layout_width="76dp"
+        android:layout_height="90dp"
+        app:srcCompat="@drawable/home"
+        android:layout_marginLeft="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginStart="16dp" />
+
+    <ImageView
+        android:id="@+id/imageView20"
+        android:layout_width="79dp"
+        android:layout_height="85dp"
+        app:srcCompat="@drawable/userprofile"
+        android:layout_marginLeft="111dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginStart="111dp" />
+
+    <ImageView
+        android:id="@+id/imageView21"
+        android:layout_width="78dp"
+        android:layout_height="79dp"
+        app:srcCompat="@drawable/trophy"
+        android:layout_marginRight="94dp"
+        app:layout_constraintRight_toRightOf="@+id/imageView22"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginEnd="94dp" />
+
+    <ImageView
+        android:id="@+id/imageView22"
+        android:layout_width="80dp"
+        android:layout_height="81dp"
+        app:srcCompat="@drawable/raceflag"
+        android:layout_marginRight="1dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginEnd="1dp" />
+
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="135dp"
+        android:text="Dine konkurranser"
+        android:textAppearance="@android:style/TextAppearance.Medium"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="10 000 m løpet"
+        android:layout_marginLeft="25dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="171dp"
+        android:layout_marginStart="16dp" />
+
+    <SearchView
+        android:layout_width="0dp"
+        android:layout_height="87dp"
+        android:layout_marginBottom="82dp"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <TextView
+        android:id="@+id/textView20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Finn Konkurranse"
+        android:layout_marginLeft="4dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="152dp" />
+
+    <TextView
+        android:id="@+id/textView19"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Andre konkurranser"
+        android:textAppearance="@android:style/TextAppearance.Medium"
+        android:layout_marginLeft="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="215dp" />
+
+    <TextView
+        android:id="@+id/textView26"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="NTNU-løpet"
+        android:layout_marginLeft="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="247dp" />
+
+</android.support.constraint.ConstraintLayout>
