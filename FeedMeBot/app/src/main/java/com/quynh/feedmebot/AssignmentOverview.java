@@ -67,7 +67,9 @@ public class AssignmentOverview extends AppCompatActivity {
 
         description = (TextView) findViewById(R.id.description);
         // Change description of the page according to what user type it is
-        if (Objects.equals(ProfLogIn.currentUser.getType(),"teacher")){
+        Log.d(TAG,"stud type: " + LogIn.currentUser.getType());
+
+        if (Objects.equals(LogIn.currentUser.getType(),"teacher")){
             description.setText("Press on an Assignment to see the students' thoughts on it");
         } else if (Objects.equals(LogIn.currentUser.getType(),"student")){
             description.setText("Press on an Assignment to proceed to the Survey page");
@@ -110,7 +112,7 @@ public class AssignmentOverview extends AppCompatActivity {
                 if (Objects.equals(LogIn.currentUser.getType(), "student")) {
                     Intent survey = new Intent(getApplicationContext(), Survey.class);
                     startActivity(survey);  // Move view to Survey if user is a student
-                } else if (Objects.equals(ProfLogIn.currentUser.getType(), "teacher")) {
+                } else if (Objects.equals(LogIn.currentUser.getType(), "teacher")) {
                     Intent stats = new Intent(getApplicationContext(), Statistics.class);
                     startActivity(stats);  // Move view to show the graphs if user is a teacher
                 }
@@ -169,3 +171,8 @@ public class AssignmentOverview extends AppCompatActivity {
         return sortedMap;
     }
 }
+//TODO: add button to se past surveys in this course.
+
+//TODO: in new class PastAssignment, show listview of answered assignments. (Litt likt show i courseOverview)
+
+//TODO: if click on assignment, show results.

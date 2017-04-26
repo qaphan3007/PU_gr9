@@ -21,6 +21,7 @@ import com.jjoe64.graphview.series.DataPoint;
 import com.quynh.feedmebot.CourseOverview;
 import com.quynh.feedmebot.R;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -99,6 +100,7 @@ public class Statistics extends AppCompatActivity {
         });
     }
 
+
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void showAssignmentTime(DataSnapshot dataSnapshot) {
         HashMap<String, Object> studentSubjects = (HashMap<String, Object>) dataSnapshot.getValue();
@@ -112,17 +114,19 @@ public class Statistics extends AppCompatActivity {
             HashMap<String, Object> infoMap = (HashMap<String, Object>) infoMaps;  // infoMap = {coursekey = TDT4145, timedict={dict}}
             // If courseKey is the correct chosen courseKey
             if (Objects.equals(infoMap.get("courseKey"), CourseOverview.assignment.getCourseKey())) {
-                HashMap<String, Object> timeDict = (HashMap<String, Object>) infoMap.get("assignmentTime"); // timedict={assNr=hour}
-                for (Object assignmentNr : timeDict.keySet()) {    // Iterate thru the "assignmentTime" table's keys
-                    String assignString = (String) assignmentNr;   // "assignString" = "assn 1"
-                    String assignNr = assignString.split(" ")[1];  // get only the number part out
-                    if (assignNr.equals(CourseOverview.assignment.getAssignmentNr())) {  // If we found the correct assignNr
-                        Integer hour = Integer.valueOf(timeDict.get(assignString).toString());   // Get the hour
-                        if (dataDict.containsKey(hour)) {
-                            Integer old_count = dataDict.get(hour);
-                            dataDict.put(hour, old_count + 1);   // if there is already an entry frm before, plus the count
-                        } else {
-                            dataDict.put(hour, 1);  // else make a new entry with stud_count = 1
+                if (infoMap.containsKey("assignmentTime")) {
+                    HashMap<String, Object> timeDict = (HashMap<String, Object>) infoMap.get("assignmentTime"); // timedict={assNr=hour}
+                    for (Object assignmentNr : timeDict.keySet()) {    // Iterate thru the "assignmentTime" table's keys
+                        String assignString = (String) assignmentNr;   // "assignString" = "assn 1"
+                        String assignNr = assignString.split(" ")[1];  // get only the number part out
+                        if (assignNr.equals(CourseOverview.assignment.getAssignmentNr())) {  // If we found the correct assignNr
+                            Integer hour = Integer.valueOf(timeDict.get(assignString).toString());   // Get the hour
+                            if (dataDict.containsKey(hour)) {
+                                Integer old_count = dataDict.get(hour);
+                                dataDict.put(hour, old_count + 1);   // if there is already an entry frm before, plus the count
+                            } else {
+                                dataDict.put(hour, 1);  // else make a new entry with stud_count = 1
+                            }
                         }
                     }
                 }
@@ -132,12 +136,18 @@ public class Statistics extends AppCompatActivity {
             // Add the items in dataDict to our bargraph series now
 
             // Make sure that null-verdier are made into a (hour=0 answers) entry
-            for (int index = 0;index<6;index++){
-                if (!(dataDict.containsKey(index))){  // If there isnt an entry, make one
-                    dataDict.put(index,0);
+            for (int index = 0; index < 6; index++) {
+                if (!(dataDict.containsKey(index))) {  // If there isnt an entry, make one
+                    dataDict.put(index, 0);
                 }
             }
+        } else {
+            for (int index = 0; index < 6; index++) {
+                dataDict.put(index, 0);
+            }
+        }
             BarGraphSeries<DataPoint> series;
+
             if (CourseOverview.assignment.getAssignmentNr().equals("1")) {  // Insert fake test values when assignNr = 1<
                  series= new BarGraphSeries<>(new DataPoint[] {
                         new DataPoint(0, 20),
@@ -146,21 +156,23 @@ public class Statistics extends AppCompatActivity {
                         new DataPoint(3, 32),
                         new DataPoint(4, 19)
                 });
-            }else {
-                series = new BarGraphSeries<>(new DataPoint[] {
-                        new DataPoint(0, dataDict.get(0)),
-                        new DataPoint(1, dataDict.get(1)),
-                        new DataPoint(2, dataDict.get(2)),
-                        new DataPoint(3, dataDict.get(3)),
-                        new DataPoint(4, dataDict.get(4)),
-                        new DataPoint(5, dataDict.get(5))
-                });
+            } else {
+                DataPoint[] points = new DataPoint[dataDict.size()];
+                for (int i = 0; i < points.length; i++) {
+                    points[i] = new DataPoint(i,dataDict.get(i));
+                } series= new BarGraphSeries<>(points);
             }
 
             assignmentTime.addSeries(series);
-            series.setSpacing(30);   // Set spacing inbetween the x-entries as 50% of its width
+            assignmentTime.setTitle("Number of students ordered by hours spent");
+           // assignmentTime.getGridLabelRenderer().setVerticalAxisTitle("test");
+            assignmentTime.getGridLabelRenderer().setHorizontalAxisTitle("hours spent");
+            //assignmentTime.getGridLabelRenderer().setLabelVerticalWidth(2);
+            series.setSpacing(50);   // Set spacing inbetween the x-entries as 50% of its width
+
         }
-    }
+
+
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void showResourcesUsed(DataSnapshot dataSnapshot) {
@@ -176,12 +188,13 @@ public class Statistics extends AppCompatActivity {
             // Read each objects and compare courseKey. If this is correct, read thru it.
             if (Objects.equals(survey_answers.get("courseKey"), CourseOverview.assignment.getCourseKey())) {
                 // resource_dict = {rdm_key = youtube, key2 = lecture}
-                HashMap<String, Object> resource_dict = (HashMap<String, Object>) survey_answers.get("resources");
-                Log.d(TAG,"resource_dict: "+resource_dict.toString());
+                String resourceFromDB = (String) survey_answers.get("resources");
+                //resourceFromDB.split(",");
+              //  ArrayList<String> resourceList = new ArrayList<>();
+                String[] resource_list = resourceFromDB.split(",");
 
-                for (Object each_resource : resource_dict.values()) {   // resource_values = ["youtube", "lectures",..}
+                for (String each_resource : resource_list) {   // resource_values = ["youtube", "lectures",..}
                     String resource = (String) each_resource;    // resource is for example "youtube"
-                    Log.d(TAG,"current resources: "+ resources.toString());
 
                     if (resources.containsKey(resource)) {
                         Integer old_count = resources.get(resource);
@@ -192,37 +205,50 @@ public class Statistics extends AppCompatActivity {
                 }
             }
         }
+        String[] available_resources = {"Videos", "Peers", "Lectures", "Forums", "Others"};
 
         // By now our resources dict should look like {"Youtube" = 5, "Lectures" = 50, etc.}
-        if (resources.size() > 0) {      // If resources dict is not empty
+        if (!resources.isEmpty()) {      // If resources dict is not empty
             // We will now add the items in resources dict to our bargraph series to showcase them.
 
             // Make sure that null-verdier are made into a (resource=0answers) entry
             // iterate through a list of all available resources to put resource=0studsUsed
-            String[] available_resources = {"Videos","Peers", "Lectures","Forums", "Others"};
             // String[] available_resources = {"Videos","Lectures", "Forums", "Others"};
 
-            for (int index = 0;index<available_resources.length;index++){
-                if (!(resources.containsKey(available_resources[index]))){  // If there isnt an entry, make one
-                    resources.put(available_resources[index],0);   // Ex: available_resources[0] = "Youtube"
+            for (int index = 0; index < available_resources.length; index++) {
+                if (!(resources.containsKey(available_resources[index].toLowerCase()))) {  // If there isnt an entry, make one
+                    resources.put(available_resources[index].toLowerCase(), 0);   // Ex: available_resources[0] = "Youtube"
                 }
             }
-            Log.d(TAG,"final resources: "+ resources.toString());
+            Log.d(TAG, "final resources dict: " + resources.toString());
+        } else {
+
+            //Puts values to zero, if resources is empty
+            for (int i = 0; i <5; i++){
+                resources.put(available_resources[i].toLowerCase(), 0);
+            }
+
+        }
 
 
 
             // Generate the series to display through a bar graph.
             BarGraphSeries<DataPoint> series;
-            // Google "android studio graph with string" (labels)
 
-
-            series = new BarGraphSeries<>(new DataPoint[]{
-                    new DataPoint(0, 20),
-                    new DataPoint(1, 15),
-                    new DataPoint(2, 44),
-                    new DataPoint(3, 32),
-                    new DataPoint(4, 19),
-            });
+            if (CourseOverview.assignment.getAssignmentNr().equals("1")) {  // Insert fake test values when assignNr = 1<
+                series = new BarGraphSeries<>(new DataPoint[]{
+                        new DataPoint(0, 20),
+                        new DataPoint(1, 15),
+                        new DataPoint(2, 44),
+                        new DataPoint(3, 32),
+                        new DataPoint(4, 19),
+                });
+            } else {
+                DataPoint[] points = new DataPoint[resources.size()];
+                for (int i = 0; i < points.length; i++) {
+                    points[i] = new DataPoint(i,resources.get(available_resources[i].toLowerCase()));
+                } series= new BarGraphSeries<>(points);
+            }
 
             resourcesView.addSeries(series);
             series.setSpacing(30);   // Set spacing inbetween the x-entries as 30% of its width
@@ -231,7 +257,12 @@ public class Statistics extends AppCompatActivity {
             StaticLabelsFormatter staticLabelsFormatter = new StaticLabelsFormatter(resourcesView);
             staticLabelsFormatter.setHorizontalLabels(available_resources);
             resourcesView.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
+            //resourcesView.getGridLabelRenderer().setVerticalAxisTitle("Number of students");
 
+            resourcesView.getGridLabelRenderer().setHorizontalAxisTitle("Resource used");
+            resourcesView.getGridLabelRenderer().setLabelHorizontalHeight(20);
+            resourcesView.setTitle("Number of students who used the resource");
+            //resourcesView.getGridLabelRenderer().setLabelVerticalWidth(20);
 
             // set manual x bounds to have nice steps
             resourcesView.getViewport().setMinX(0);
@@ -241,5 +272,6 @@ public class Statistics extends AppCompatActivity {
             resourcesView.getViewport().setScalable(true); // enables horizontal zooming and scrolling
 
         }
-    }
+
+
 }

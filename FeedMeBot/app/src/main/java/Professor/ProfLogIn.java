@@ -37,6 +37,8 @@ import Student.LogIn;
 
 public class ProfLogIn extends AppCompatActivity implements View.OnClickListener {
 
+    //TODO: make this site pretty, good first impression.
+
     private final String TAG = "Professor Signing In";
 
     // Creating view objects
@@ -53,7 +55,6 @@ public class ProfLogIn extends AppCompatActivity implements View.OnClickListener
     private DatabaseReference mDatabase;
     private String userID;
 
-    public static User currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +71,7 @@ public class ProfLogIn extends AppCompatActivity implements View.OnClickListener
         buttonStud = (Button) findViewById(R.id.buttonStud);
         progressDialog = new ProgressDialog(this);
         mDatabase = FirebaseDatabase.getInstance().getReference();
-        currentUser = new User();
+        LogIn.currentUser = new User();
 
         //Get a reference to the Firebase auth object
         mAuthListener = new FirebaseAuth.AuthStateListener() {
@@ -82,6 +83,7 @@ public class ProfLogIn extends AppCompatActivity implements View.OnClickListener
 
                 } else {
                     Log.d(TAG, "Currently Signed Out");
+                    LogIn.currentUser.setType(null);
                 }
             }
         };
@@ -165,8 +167,8 @@ public class ProfLogIn extends AppCompatActivity implements View.OnClickListener
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
-                        currentUser.setEmail(email);
-                        currentUser.setType("teacher");
+                        LogIn.currentUser.setEmail(email);
+                        LogIn.currentUser.setType("teacher");
 
                         finish();
                         //display some message here
@@ -202,8 +204,8 @@ public class ProfLogIn extends AppCompatActivity implements View.OnClickListener
                         // Get the current logged in user
                         FirebaseUser user = mAuth.getCurrentUser();
                         userID = user.getUid();
-                        currentUser.setEmail(email);
-                        currentUser.setType("teacher");
+                        LogIn.currentUser.setEmail(email);
+                        LogIn.currentUser.setType("teacher");
 
                         // Make a new user entry in the database
                         HashMap<String, String> userEntry = new HashMap<String, String>();

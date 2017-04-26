@@ -18,12 +18,15 @@
         tools:ignore="UselessParent">
 
         <TextView
+            android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_gravity="center_horizontal"
             android:text="Student Login"
-            android:id="@+id/textView"
-            android:layout_gravity="center_horizontal"/>
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@android:color/holo_green_light"
+            android:textSize="25sp"
+            android:textStyle="italic" />
 
         <EditText
             android:id="@+id/editTextEmail"
@@ -46,14 +49,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
-            android:text="Login" />
+            android:text="Login"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/buttonSignup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
-            android:text="Sign up" />
+            android:text="Sign up"
+            android:textStyle="bold" />
 
         <TextView
             android:text="Forgot Password?"
@@ -76,14 +81,6 @@
         android:layout_alignParentStart="true"
         android:onClick="profJump"/>
 
-    <Button
-        android:id="@+id/button10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignTop="@+id/buttonProf"
-        android:onClick="goToSurvey"
-        android:text="Help?" />
+
 
 </RelativeLayout>

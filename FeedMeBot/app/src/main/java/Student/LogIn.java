@@ -33,6 +33,8 @@ import Professor.ProfLogIn;
 
 public class LogIn extends AppCompatActivity implements View.OnClickListener {
 
+    //TODO: make this activity pretty aswell.
+
     private final String TAG = "Student Signing In";
 
     // Creating view objects
@@ -220,7 +222,7 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener {
             });
         }
     }
-    public void goToSurvey(View view) {
+    private void goToSurvey(View view) {
         Intent intent = new Intent(this, Survey.class);
         startActivity(intent);
     }

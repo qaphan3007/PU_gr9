@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="/Users/Sterri/.android/build-cache/76e92afdd072e089d1a8d924aeb71403f93fbf8a/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="0d5cbbbfe040201c7569478b70a13b58fd11aab4">
+        <dex dex="/Users/Sterri/Documents/PU/PU_gr9/FeedMeBotV03/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_89e8cb1db74a016d3ff920eea0be35f9d78c5297/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Sterri/Library/Android/sdk/extras/m2repository/com/android/support/constraint/constraint-layout-solver/1.0.1/constraint-layout-solver-1.0.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="1ad79631209e77b0a2730fc112b4cc0c66a95132">
+        <dex dex="/Users/Sterri/Documents/PU/PU_gr9/FeedMeBotV03/app/build/intermediates/transforms/dex/debug/folders/1000/10/constraint-layout-solver-1.0.1_52bca92cfc8183a23fc0de66d9f768ddfa6aff24/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Sterri/Documents/PU/PU_gr9/FeedMeBotV03/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="6e497d9f92de701ae1ce4c2f5e8c0910a2963277">
+        <dex dex="/Users/Sterri/Documents/PU/PU_gr9/FeedMeBotV03/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_d65bfd969d94f42a4fea5c809ea7a112c3bad808/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Sterri/.android/build-cache/df2b7ab1ca1188f20d74abff418b3bd8eea436be/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="810f41e5b7fd99f196ebeabe865ba2c54e7e76dc">
+        <dex dex="/Users/Sterri/Documents/PU/PU_gr9/FeedMeBotV03/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_22daaef5a69172d72dba7dcda7d9ee51492c3d99/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Sterri/.android/build-cache/530b06cfeee3ab3e73570a346368d896ccbec397/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="48532a016bb0dfbe7970c147ce784598a515406b">
+        <dex dex="/Users/Sterri/Documents/PU/PU_gr9/FeedMeBotV03/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_4e744cc46c9538647df4976efc0a2fc7c119f4a5/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Sterri/.android/build-cache/a2609fe7136f6439fbb891b9bbcb3b78a239b644/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="67eb33110dbacb46a48175b08ae0c96761d2c17d">
+        <dex dex="/Users/Sterri/Documents/PU/PU_gr9/FeedMeBotV03/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_eef1cd7b42447fa62a32750e8a67935164e3006d/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Sterri/.android/build-cache/c62743a9894a75bddf73b364b15b11f962d972fb/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="a61e7010aa7be5da53cd1bc5279630510c9a4912">
+        <dex dex="/Users/Sterri/Documents/PU/PU_gr9/FeedMeBotV03/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_95f6a4aab5aeec41d136d9009e2d1c64e676d81d/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Sterri/.android/build-cache/94124687ce4f850cc8b88cb779c0645a375d2b16/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="702d339bc0a81d21354cd7e2cf2b67225fa4a16c">
+        <dex dex="/Users/Sterri/Documents/PU/PU_gr9/FeedMeBotV03/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_b7111cc7e39f1bde7ced37a9ef2b677d6aae6adb/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Sterri/.android/build-cache/b7269f10109d014c9581f35d52c8bf1b4298eff3/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="ee394a892dd21c03a528139c1e8d4e0e1264ac84">
+        <dex dex="/Users/Sterri/Documents/PU/PU_gr9/FeedMeBotV03/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_292b1feae138049498b9f7ea724fd6cdffb9c436/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Sterri/.android/build-cache/4e6034dbc21a955fb4c8e19c725ed8a60fe61044/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="fa0446a14ed5dd3725047d6399ffea771a564b30">
+        <dex dex="/Users/Sterri/Documents/PU/PU_gr9/FeedMeBotV03/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_84b04a326825a201bac1cf29eef316bd2582e83c/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Sterri/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/25.2.0/support-annotations-25.2.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="4a5a82a027706397fff621b22fd6fa796e91d7c5">
+        <dex dex="/Users/Sterri/Documents/PU/PU_gr9/FeedMeBotV03/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-25.2.0_0a961357aed66e66f45963b34439aaf73e055e5e/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Sterri/.android/build-cache/e2a0b9f567cae1dc131f160b8eb4ec2fdafe4cfc/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="7113302c965566b66df46c6ca75ea301576114a5">
+        <dex dex="/Users/Sterri/Documents/PU/PU_gr9/FeedMeBotV03/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_76781fd201998133e4c9c17c24811ac61b7b2907/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Sterri/.android/build-cache/fe66dea985be65c0614bcb1fe471b2fa9bb925c4/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="3d13e510077b35fe8e49930a627dd849ad5da0dc">
+        <dex dex="/Users/Sterri/Documents/PU/PU_gr9/FeedMeBotV03/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_e6df6d045f1f95facb41223afee654a0f6009576/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Sterri/.android/build-cache/45a0a930454b5ae258e4cf87f2372eb228693f12/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="0e301f24b283f14b564f660c9abe863af6be5896">
+        <dex dex="/Users/Sterri/Documents/PU/PU_gr9/FeedMeBotV03/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_4fb8f485fcfbdb45a7d03775b4f2c2c64591393b/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Sterri/Documents/PU/PU_gr9/FeedMeBotV03/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="c82741bc129dd5f99f11a4ab8666ae24262053b6">
+        <dex dex="/Users/Sterri/Documents/PU/PU_gr9/FeedMeBotV03/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_7ca08756638425445b1c0171e310745d88f32e73/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Sterri/.android/build-cache/ed562ebe9e76f581e2879d839a68be7653160e08/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="1ac56e5801e986583cbe27f2cce57f626cc7ff93">
+        <dex dex="/Users/Sterri/Documents/PU/PU_gr9/FeedMeBotV03/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_0dfc35378d5146339d7690e1238e10a22d2c8670/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Sterri/.android/build-cache/d66e2706db91881cea99e155de98d81aaf8429cb/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="94fca868854457ede6df15c902938468c71d579e">
+        <dex dex="/Users/Sterri/Documents/PU/PU_gr9/FeedMeBotV03/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_02ec3f2b71bd6070f2f9357c668681ae378818c6/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Sterri/.android/build-cache/200c63161f2dc5bf334932d19d8cd33577dbeb3b/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="8fe8a8f77d651982ce5e18f6187dc4daf914ac57">
+        <dex dex="/Users/Sterri/Documents/PU/PU_gr9/FeedMeBotV03/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_7928b09b739002de972099623371500e23776999/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Sterri/.android/build-cache/bfdff2a2fcecf7598630aa61abf1617687e77bf3/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="/Users/Sterri/Documents/PU/PU_gr9/FeedMeBotV03/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_679732f4bb91422b191f0e226fd57bfa352737fd/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Sterri/.android/build-cache/084f21833a2ddf16c1d2b2ba3e281b8df6e36384/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="ce9112e08a027c8620ae693983e38cdbb9f6371b">
+        <dex dex="/Users/Sterri/Documents/PU/PU_gr9/FeedMeBotV03/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_b026e1bb618db7c4ad746d1fd24a800e42656901/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Sterri/.android/build-cache/3326a5635148272a28422eab1bd307a7bb26152d/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="bd75f9f0296fe220da6d0ad961831b04541c4452">
+        <dex dex="/Users/Sterri/Documents/PU/PU_gr9/FeedMeBotV03/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_5c3f58c9c89bf0ef0aea4eefb429a69e760a9229/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Sterri/.android/build-cache/ddc0a5465a223e4a5c3081635a8161f841c4bb65/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="cb454b52545859ed2f24a6c01366805b0fa04b22">
+        <dex dex="/Users/Sterri/Documents/PU/PU_gr9/FeedMeBotV03/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_19ac9f948e8ddad811c299fd5d64b059684c99d0/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Sterri/.android/build-cache/a32a8ccf02c394f076626ca0bc69171fe214efbb/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="e820b7be8c035dd522da4bc822e8a76c8e27921a">
+        <dex dex="/Users/Sterri/Documents/PU/PU_gr9/FeedMeBotV03/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_9f6951246b3d88bb9e9ea697f2290a14cbd4b8e6/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Sterri/.android/build-cache/bf587e808c614082ab81aad8b070f306e1e55126/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="3d6951cb416ebf8c66a32b9480808ca247b68344">
+        <dex dex="/Users/Sterri/Documents/PU/PU_gr9/FeedMeBotV03/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_869f033d11434ac6599dae8b1605fbc18ebc6bfa/classes.dex" />
+    </item>
+
+</items>

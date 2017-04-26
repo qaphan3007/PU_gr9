@@ -16,7 +16,7 @@
         />
 
     <TextView
-        android:text = "Choose a course to see all of its available assignments"
+        android:text = "Choose a course you would like more info on"
         android:textAlignment="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -25,11 +25,33 @@
         />
 
     <ListView
+        android:id="@+id/listview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/listview"
-        android:layout_weight="5">
-    </ListView>
+        android:layout_weight="5"></ListView>
+
+    <Button
+        android:id="@+id/gradeButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:text="Grade Prediction" />
+
+    <Button
+        android:id="@+id/assignmentButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:text="See Assignments from Chosen Course" />
+
+    <Button
+        android:id="@+id/addCourseButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:text="Add other subject"
+        android:onClick="goToAddCourse"/>
+
 
 
 </LinearLayout>

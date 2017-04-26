@@ -1,5 +1,8 @@
 package NonActivities;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 /**
  * Created by Kv1402 on 05.03.2017.
  */
@@ -17,7 +20,7 @@ public class Assignment {
     private int assignmentHours;
     //assignment difficulties
     private String assignmentLevel;
-    private String[] resources;
+    private ArrayList<String> resources;
 
 
 
@@ -84,11 +87,15 @@ public class Assignment {
         this.assignmentLevel = assignmentLevel;
     }
 
-    public String[] getResources() {
+    public ArrayList<String> getResources() {
         return resources;
     }
 
-    public void setResources(String[] resources) {
-        this.resources = resources;
+    public void setResources(ArrayList<String> resource) {
+        //resources.add(resource);
+        //resources = resource;
+            this.resources = resource;
+        //resources.add(resource);
+
     }
 }
