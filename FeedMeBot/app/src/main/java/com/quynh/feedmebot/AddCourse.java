@@ -59,11 +59,13 @@ public class AddCourse extends AppCompatActivity {
 
         //assignment = CourseOverview.assignment;
 
+
+        //Showing avaliable courses
         myRef.child("Subject").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 showCourses(dataSnapshot);
-                Log.d(TAG, "showing courses");
+                Log.d(TAG, "showing courses"); //test, remember to remove
             }
 
             @Override
@@ -74,9 +76,7 @@ public class AddCourse extends AppCompatActivity {
 
 
 
-        // When the user presses on an item in the listview, save the courseKey in a global variable
-
-
+        // When the user presses on an item in the listview, save the courseKey as a String
         mListView.setAdapter(adapter);
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -84,7 +84,7 @@ public class AddCourse extends AppCompatActivity {
                 String var = parent.getItemAtPosition(position) +"";
                 clickedCourse = var.trim();
 
-                toastMessage(clickedCourse);
+                toastMessage(clickedCourse + " selected!");
 
             }
         });
@@ -93,34 +93,35 @@ public class AddCourse extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(Objects.equals(LogIn.currentUser.getType(),"student")){
+                    //Check if no subject selected
                     if(!clickedCourse.isEmpty()){
                         myRef.child("StudentSubject").addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
-                                    //insert
+                                //Checking if student already enrolled in subject.
                                 inCourse = alreadyInCourse(dataSnapshot);
-
-
-
-
-
+                                Log.d(TAG,inCourse + "" );
 
                             }
-
-
                             @Override
                             public void onCancelled(DatabaseError databaseError) {
-
                             }
+
                         });
                         if(!inCourse) {
                             createNewStudentSubject();
 
                             startActivity(new Intent(getApplicationContext(), CourseOverview.class));
                             Log.d(TAG, "created student.");
+                            //Not working, inCourse always false?
+                        } else if(inCourse){
+                            toastMessage("Already enrolled in this subject!");
                         }
 
                     }
+                }else if(Objects.equals(LogIn.currentUser.getType(),"professor")){
+                    //Make professor new owner of class- remeber to check if already owner of class.
+
                 }
 
             }
@@ -169,15 +170,17 @@ public class AddCourse extends AppCompatActivity {
         for (Object courseInfo: studCourses.values()){    // Each key is random generated push(), each value = courseInfo
             HashMap<String,Object> course_info = (HashMap<String,Object>) courseInfo;  // Cast Object to HashMap
             // If the email in a StudentSubject entry is the same as the currently logged in Student
-            if ((!Objects.equals(course_info.get("email"),LogIn.currentUser.getEmail())) && !Objects.equals(course_info.get("courseKey"), clickedCourse)){
+            if ((Objects.equals(course_info.get("email"),LogIn.currentUser.getEmail())) && (Objects.equals(course_info.get("courseKey"), clickedCourse))){
 
-                return false;
+                return true;
                 // attendingSubjects.add(course_info.get("courseKey").toString());  // Add the course into attendingSubjects
             }
+
         }
-        return true;
+        return false;
     }
 
+    //Not used, safe to delete
     private void goToCourseOverview(View veiw){
         Intent courseOverview = new Intent (this, CourseOverview.class);
         startActivity(courseOverview);

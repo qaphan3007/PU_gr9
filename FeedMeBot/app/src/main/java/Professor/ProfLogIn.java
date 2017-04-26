@@ -37,6 +37,8 @@ import Student.LogIn;
 
 public class ProfLogIn extends AppCompatActivity implements View.OnClickListener {
 
+    //TODO: make this site pretty, good first impression.
+
     private final String TAG = "Professor Signing In";
 
     // Creating view objects
