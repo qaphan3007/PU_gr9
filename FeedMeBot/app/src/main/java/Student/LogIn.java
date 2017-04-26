@@ -54,7 +54,7 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener {
     public static User currentUser;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
 
@@ -116,6 +116,7 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener {
     // When user click on either login or register button, change FirebaseAuth user.
     @Override
     public void onClick(View view) {
+        
         if (view == buttonSignup) {
             //calling register method on click
             registerUser();
@@ -128,7 +129,7 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener {
 
 
     // Check whether the user has typed in correct format in the input fields.
-    private boolean checkValidInputField(String email, String password){
+    public boolean checkValidInputField(String email, String password){
         //Check for valid email and password
         if(TextUtils.isEmpty(email)){
             toastMessage("Email field must not be empty.");
@@ -144,7 +145,7 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener {
 
         }
         else if(password.length() < 10) {
-            toastMessage("Password must at least contain 10 characters.");
+           toastMessage("Password must at least contain 10 characters.");
             return false;
         }
         else {return true;}
@@ -178,7 +179,7 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener {
 
 
     // Register new user with the Auth object, then add this new user entry to the database.
-    private void registerUser(){
+    public void registerUser(){
         //get email and password from the input field
         final String email = editTextEmail.getText().toString().trim();
         String password  = editTextPassword.getText().toString().trim();
@@ -232,5 +233,15 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener {
     private void toastMessage(String message){
         Toast.makeText(this,message,Toast.LENGTH_LONG).show();
     }
+
+    public EditText getEmail(){
+        return editTextEmail;
+
+    }
+
+
+
+
+
 
 }

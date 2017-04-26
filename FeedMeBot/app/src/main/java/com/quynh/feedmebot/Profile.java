@@ -88,6 +88,7 @@ public class Profile extends AppCompatActivity {
             }
         };
 
+
         // Every time there is a change to the database at myRef, we call showData to show the user info
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -101,6 +102,8 @@ public class Profile extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) {
 
             }
+
+
         });
 
 
@@ -135,6 +138,8 @@ public class Profile extends AppCompatActivity {
 
 
     }
+
+
 
     private void showData(DataSnapshot dataSnapshot) {
         // userMap is a map that has the values: userID = HashMap of userInfo

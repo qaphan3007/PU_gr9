@@ -68,7 +68,9 @@ public class CourseOverview extends AppCompatActivity {
 
     public static Assignment assignment;  // This is the global variable that will be accessed in other classes!
 
+    public void CourseOverview(){
 
+    }
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

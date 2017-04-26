@@ -1,7 +1,11 @@
-package com.quynh.feedmebot;
+package com.quynh.feedmebot.Student;
 
+import android.support.test.espresso.matcher.ViewMatchers;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
+
+import com.quynh.feedmebot.EditProfile;
+import com.quynh.feedmebot.R;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
@@ -36,8 +40,8 @@ public class EditProfileTests {
             new ActivityTestRule<>(EditProfile.class);
 
     @Test
-    public void testLogInWithAnExistingAccount() {
-        onView(withId(R.id.nameEdit))
+    public void editAccount() {
+        onView(ViewMatchers.withId(R.id.nameEdit))
             .perform(typeText("Quit Phuong"), closeSoftKeyboard());
 
         onView(withId(R.id.majorEdit))
@@ -49,14 +53,14 @@ public class EditProfileTests {
         onView(withId(R.id.phoneEdit))
                 .perform(typeText("72607428"), closeSoftKeyboard());
 
-        onView(withText("Edit"))
-                .perform(click());
-
-        onView(withId(R.id.edit_profile))
-                .perform(click());
-
         onView(withId(R.id.edit))
                 .perform(click());
+
+        //onView(withId(R.id.edit_profile))
+           //     .perform(click());
+
+        //onView(withId(R.id.edit))
+         //       .perform(click());
     }
 
 

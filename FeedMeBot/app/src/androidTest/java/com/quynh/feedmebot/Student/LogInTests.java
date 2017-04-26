@@ -1,14 +1,17 @@
-package com.quynh.feedmebot;
+package com.quynh.feedmebot.Student;
 
 import android.support.test.espresso.ViewAction;
 import android.support.test.espresso.ViewAssertion;
 import android.support.test.espresso.ViewInteraction;
 import android.support.test.espresso.assertion.ViewAssertions;
+import android.support.test.espresso.matcher.ViewMatchers;
 import android.support.test.filters.SmallTest;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
 // Remember to import libs
+
+import com.quynh.feedmebot.R;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
@@ -46,8 +49,8 @@ public class LogInTests {
 
 public void testLogIn(){
 
-    onView(withId(R.id.textView))
-            .check(matches(withText("Student Registration")));
+    onView(ViewMatchers.withId(R.id.textView))
+            .check(matches(withText("Student Login")));
     //Test will enter a name into the EditText control
     //Finds the view with the ID
     // Tapping a text input
@@ -82,16 +85,15 @@ public void SignUpTest(){
 
     onView(withText("Sign up")).perform(click());
 }
-@Test
-public void surveyButton(){
-    onView(withId(R.id.button10))
-            .perform(click())
+//@Test
+//public void surveyButton(){
+  //  onView(withId(R.id.button10))
+    //        .perform(click())
 
 
 
     ;
 
-}
 @Test
 public void profLogIn(){
 
@@ -101,8 +103,8 @@ public void profLogIn(){
 
     onView(withId(R.id.buttonProf)).perform(click());
     onView(withId(R.id.editTextEmail))
-            .perform(typeText("proftest123@gmail.com"))
-            .check(matches(isDisplayed()));
+              .perform(typeText("proftest123@gmail.com"))
+              .check(matches(isDisplayed()));
 
     onView(withId(R.id.editTextPassword))
             .perform(typeText("1111111111"))
